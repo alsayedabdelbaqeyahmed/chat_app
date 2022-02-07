@@ -1,7 +1,10 @@
-import 'package:chatapp/chat_screen/chat_screen.dart';
+import 'package:chatapp/add_friends/add_friends_screen.dart';
+
 import 'package:chatapp/constants/constants.dart';
 import 'package:chatapp/constants/routes.dart';
 import 'package:chatapp/multiuserchats/multi_user_screens.dart';
+
+import 'package:chatapp/providers/add_friend_provider.dart';
 import 'package:chatapp/providers/sign_up_provider.dart';
 import 'package:chatapp/providers/chat_screen_provider.dart';
 import 'package:chatapp/splash_screen/splash_screen.dart';
@@ -109,6 +112,7 @@ class _MyAppState extends State<MyApp> {
       providers: [
         ChangeNotifierProvider(create: (ctx) => SignUpProvider()),
         ChangeNotifierProvider(create: (ctx) => ChatScreenProvider()),
+        ChangeNotifierProvider(create: (ctx) => AddFriendProvider()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -122,10 +126,13 @@ class _MyAppState extends State<MyApp> {
         home: StreamBuilder(
           stream: FirebaseAuth.instance.authStateChanges(),
           builder: (ctx, userData) {
-            if (userData.hasData) {
-              return MultiUserChats();
+            print(userData.hasData);
+            print(userData.data);
+            if (userData.hasData == true) {
+              return AddFriendScreen();
+            } else {
+              return SplashScreen();
             }
-            return SplashScreen();
           },
         ),
         routes: routes,

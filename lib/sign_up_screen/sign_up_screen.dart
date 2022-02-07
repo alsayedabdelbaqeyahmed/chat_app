@@ -33,7 +33,7 @@ class SignUpScreen extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                   SizedBox(height: size.height * 0.05),
-                  SignUpForm(),
+                  SignUpForm(isFrirend: false),
                 ],
               ),
             ),

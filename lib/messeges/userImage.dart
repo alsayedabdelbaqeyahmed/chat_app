@@ -1,4 +1,4 @@
-import 'package:chatapp/constants/constants.dart';
+
 import 'package:flutter/material.dart';
 
 Container userImage(Size size, String data, bool isMe, {bool isChat = false}) {

@@ -8,6 +8,7 @@ class ChatAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Container(
+      padding: EdgeInsets.only(top: size.height * 0.02),
       color: appBarColor,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

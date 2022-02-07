@@ -3,7 +3,7 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:chatapp/constants/constants.dart';
 import 'package:chatapp/constants/default_buttons.dart';
 import 'package:chatapp/providers/sign_up_provider.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
@@ -69,8 +69,7 @@ class _TakeImageState extends State<TakeImage> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final providerData = Provider.of<SignUpProvider>(context);
-    final argData =
-        ModalRoute.of(context)!.settings.arguments as PhoneAuthCredential?;
+    final argData = ModalRoute.of(context)!.settings.arguments as List<dynamic>;
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -168,10 +167,10 @@ class _TakeImageState extends State<TakeImage> {
                   size: size,
                   press: () async {
                     await providerData.signUpWithPhone(
-                      phonecredintial: argData!,
-                      context: context,
-                      image: _selectedImage!,
-                    );
+                        phonecredintial: argData[0]!,
+                        context: context,
+                        image: _selectedImage!,
+                        phoneNumber: argData[1]);
                   },
                   text: 'Finish',
                   textcolors: textColor,

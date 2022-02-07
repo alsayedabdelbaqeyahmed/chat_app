@@ -1,5 +1,4 @@
 import 'package:chatapp/chat_screen/chat_app_bar.dart';
-import 'package:chatapp/chat_screen/screens_bar.dart';
 
 import 'package:chatapp/messeges/messeges.dart';
 
@@ -18,7 +17,7 @@ class ChatScreen extends StatelessWidget {
       body: Column(
         children: [
           ChatAppBar(),
-          ScreensBar(userName: userName),
+          //ScreensBar(userName: userName),
           Expanded(
             child: MessegesScreen(
               userId: userId,

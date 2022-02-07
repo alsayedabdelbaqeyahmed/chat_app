@@ -1,3 +1,4 @@
+
 import 'package:chatapp/constants/constants.dart';
 import 'package:chatapp/constants/default_buttons.dart';
 import 'package:chatapp/otp_screen/take_profile_image.dart';
@@ -27,7 +28,7 @@ class _OtpFormScreenState extends State<OtpFormScreen> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
-    final argData = ModalRoute.of(context)!.settings.arguments as String?;
+    final argData = ModalRoute.of(context)!.settings.arguments as List<String?>;
 
     return Form(
       key: _formkey,
@@ -42,11 +43,12 @@ class _OtpFormScreenState extends State<OtpFormScreen> {
 
                 PhoneAuthCredential phoneAuthCredential =
                     PhoneAuthProvider.credential(
-                  verificationId: argData!,
+                  verificationId: argData[0]!,
                   smsCode: _codeController1.text,
                 );
                 Navigator.of(context).pushNamed(TakeImage.routeNames,
-                    arguments: phoneAuthCredential);
+                    arguments: [phoneAuthCredential, argData[1]]);
+                // Navigator.of(context).pushNamed(AddFriendScreen.routeName);
               }
             },
             text: 'Continue',

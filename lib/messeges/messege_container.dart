@@ -1,7 +1,8 @@
 import 'package:chatapp/constants/constants.dart';
+
 import 'package:chatapp/messeges/userImage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:flutter/material.dart';
 
 class MessegeContainer extends StatelessWidget {
@@ -10,22 +11,24 @@ class MessegeContainer extends StatelessWidget {
   final String? userName;
   final String? date;
   final bool? isUser;
+  final String? userPhone;
 
-  const MessegeContainer(
-      {Key? key,
-      this.messgeg,
-      this.isMe,
-      this.userName,
-      this.date,
-      this.isUser})
-      : super(key: key);
+  const MessegeContainer({
+    Key? key,
+    this.messgeg,
+    this.isMe,
+    this.userName,
+    this.date,
+    this.isUser,
+    this.userPhone,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return FutureBuilder(
       future: FirebaseFirestore.instance
           .collection(conUserCollectios)
-          .doc(FirebaseAuth.instance.currentUser!.uid)
+          .doc(userPhone)
           .get(),
       builder: (ctx, data) {
         if (data.connectionState == ConnectionState.waiting) {

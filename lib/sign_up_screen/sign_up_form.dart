@@ -1,11 +1,19 @@
+import 'package:chatapp/chat_screen/chat_screen.dart';
 import 'package:chatapp/constants/constants.dart';
 import 'package:chatapp/constants/default_buttons.dart';
+import 'package:chatapp/constants/userDataModel.dart';
+import 'package:chatapp/providers/add_friend_provider.dart';
+
 import 'package:chatapp/providers/sign_up_provider.dart';
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class SignUpForm extends StatefulWidget {
+  final bool? isFrirend;
+  static String? friendPhone;
+
+  const SignUpForm({Key? key, required this.isFrirend}) : super(key: key);
   @override
   _SignUpFormState createState() => _SignUpFormState();
 }
@@ -14,10 +22,27 @@ class _SignUpFormState extends State<SignUpForm> {
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
   CountryCode? countryType;
   String? name, phone;
+
+  var userData = LocalDataBase.db;
+  UserDataModel? localUser;
+  String? localUserPhone;
+  String? localUserName;
+
+  Future<UserDataModel> localUserData() async {
+    // var db = LocalDataBase.db;
+
+    await userData.getUserData().then((value) {
+      print(value);
+      localUser = value;
+      return localUser;
+    });
+    return localUser!;
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final providerData = Provider.of<SignUpProvider>(context);
+    // final providerData = Provider.of<SignUpProvider>(context, listen: false);
     return Form(
       key: _formkey,
       child: Column(
@@ -58,24 +83,65 @@ class _SignUpFormState extends State<SignUpForm> {
           SizedBox(height: size.height * 0.08),
           DefaultButton(
             buttoncolors: primaryColor,
-            text: 'Done',
+            text: widget.isFrirend! ? 'Add New Friend' : 'Done',
             textcolors: Colors.white,
             size: size,
             press: () async {
+              final providerData =
+                  Provider.of<SignUpProvider>(context, listen: false);
+              final friendProvider =
+                  Provider.of<AddFriendProvider>(context, listen: false);
               if (_formkey.currentState!.validate()) {
                 _formkey.currentState!.save();
+                if (widget.isFrirend != true)
+                  userData.insertData(
+                    UserDataModel(
+                      userPhone2: countryType?.dialCode != null
+                          ? countryType!.dialCode! + phone!
+                          : '+20',
+                      username: name,
+                      friendPhone: '+20',
+                    ),
+                  );
 
-                await providerData.enterPhoneNumber(
-                  phoneNumber: countryType?.dialCode != null
-                      ? countryType!.dialCode! + phone!
-                      : '+20',
-                  context: context,
-                  name: name,
-                  country: countryType?.name == null ? 'مصر' : countryType!.name,
-                  dialCode: countryType?.dialCode == null
-                      ? '+20'
-                      : countryType!.dialCode,
-                );
+                await localUserData();
+                widget.isFrirend! != true
+                    ? await providerData.enterPhoneNumber(
+                        phoneNumber: countryType?.dialCode != null
+                            ? countryType!.dialCode! + phone!
+                            : '+20',
+                        context: context,
+                        name: name,
+                        country: countryType?.name == null
+                            ? 'مصر'
+                            : countryType!.name,
+                        dialCode: countryType?.dialCode == null
+                            ? '+20'
+                            : countryType!.dialCode,
+                      )
+                    : await friendProvider
+                        .addFriends(
+                        context: context,
+                        friendName: name,
+                        userPhone: localUser!.userPhone2,
+                        friendNumber: countryType?.dialCode != null
+                            ? countryType!.dialCode! + phone!
+                            : '+20',
+                      )
+                        .then(
+                        (value) {
+                          userData.updateData(
+                            UserDataModel(
+                              userPhone2: localUser!.userPhone2,
+                              username: localUser!.username,
+                              friendPhone: countryType?.dialCode != null
+                                  ? countryType!.dialCode! + phone!
+                                  : '+20',
+                              id: localUser!.id,
+                            ),
+                          );
+                        },
+                      );
                 // print('${countryType.dialCode + phone}');
                 // print(countryType.name);
               }

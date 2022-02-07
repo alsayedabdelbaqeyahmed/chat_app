@@ -1,3 +1,4 @@
+import 'package:chatapp/add_friends/add_friends_screen.dart';
 import 'package:chatapp/chat_screen/chat_screen.dart';
 import 'package:chatapp/chat_screen/screens_bar.dart';
 import 'package:chatapp/home_screen/home_screen.dart';
@@ -17,4 +18,5 @@ Map<String, Widget Function(BuildContext context)> routes = {
   TakeImage.routeNames: (context) => TakeImage(),
   ScreensBar.routName: (context) => ScreensBar(),
   MultiUserChats.routeNames: (context) => MultiUserChats(),
+  AddFriendScreen.routeName: (context) => AddFriendScreen(),
 };

@@ -470,6 +470,18 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "sqflite",
+      "rootUri": "file:///Users/sayed/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/sqflite-2.0.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "sqflite_common",
+      "rootUri": "file:///Users/sayed/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/sqflite_common-2.2.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.15"
+    },
+    {
       "name": "stack_trace",
       "rootUri": "file:///Users/sayed/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/stack_trace-1.10.0",
       "packageUri": "lib/",
@@ -484,6 +496,12 @@
     {
       "name": "string_scanner",
       "rootUri": "file:///Users/sayed/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/string_scanner-1.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "synchronized",
+      "rootUri": "file:///Users/sayed/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/synchronized-3.0.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -548,7 +566,7 @@
       "languageVersion": "2.12"
     }
   ],
-  "generated": "2022-01-18T15:26:11.540917Z",
+  "generated": "2022-02-03T15:02:21.439480Z",
   "generator": "pub",
   "generatorVersion": "2.15.1"
 }

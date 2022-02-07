@@ -1,6 +1,7 @@
 import 'dart:io';
+import 'package:chatapp/add_friends/add_friends_screen.dart';
 import 'package:chatapp/constants/constants.dart';
-import 'package:chatapp/multiuserchats/multi_user_screens.dart';
+
 import 'package:chatapp/otp_screen/otp_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -16,11 +17,12 @@ class SignUpProvider with ChangeNotifier {
   String? get verificationID => _verifactionID2;
   String? _chatUserName;
   String? get chatUserNmae => _chatUserName;
-  String? _userId;
-  String? get userId => _userId;
+  static String? _userId;
+  static String? get userId => _userId;
 
   Future<void> signUpWithPhone({
     required PhoneAuthCredential phonecredintial,
+    required String? phoneNumber,
     BuildContext? context,
     File? image,
   }) async {
@@ -38,7 +40,7 @@ class SignUpProvider with ChangeNotifier {
           final profileImageUrl = await ref.getDownloadURL();
           await FirebaseFirestore.instance
               .collection(conUserCollectios)
-              .doc(authcredintial.user!.uid)
+              .doc(phoneNumber)
               .set(
             {
               conuserName: username,
@@ -49,7 +51,10 @@ class SignUpProvider with ChangeNotifier {
               conUserImageUrl: profileImageUrl.toString(),
             },
           ).whenComplete(
-            () => Navigator.of(context!).pushNamed(MultiUserChats.routeNames),
+            () {
+              _userId = authcredintial.user!.uid;
+              Navigator.of(context!).pushNamed(AddFriendScreen.routeName);
+            },
           );
         },
       );
@@ -73,7 +78,11 @@ class SignUpProvider with ChangeNotifier {
       await _auth.verifyPhoneNumber(
         phoneNumber: phoneNumber,
         verificationCompleted: (phoneauth) async {
-          await signUpWithPhone(phonecredintial: phoneauth, context: context);
+          await signUpWithPhone(
+            phonecredintial: phoneauth,
+            context: context,
+            phoneNumber: phoneNumber,
+          );
         },
         verificationFailed: (FirebaseAuthException e) {
           if (e.code == 'invalid-phone-number') {
@@ -86,8 +95,8 @@ class SignUpProvider with ChangeNotifier {
         codeSent: (verificationId, resendingToken) async {
           _verifactionID2 = verificationId;
 
-          Navigator.of(context!)
-              .pushNamed(OtpScreen.routeNames, arguments: verificationID);
+          Navigator.of(context!).pushNamed(OtpScreen.routeNames,
+              arguments: [verificationID, phoneNumber]);
           username = name;
           usercountry = country;
           userdialCode = dialCode;

@@ -1,7 +1,9 @@
 import 'dart:io';
 
 import 'package:chatapp/constants/constants.dart';
+import 'package:chatapp/constants/userDataModel.dart';
 import 'package:chatapp/providers/chat_screen_provider.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 
@@ -10,9 +12,14 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class SendMessegesForm extends StatefulWidget {
-  final String? chatUserId;
+  final String? chatUserId, userPhone, friendPhone;
 
-  const SendMessegesForm({Key? key, this.chatUserId}) : super(key: key);
+  const SendMessegesForm({
+    Key? key,
+    this.chatUserId,
+    required this.userPhone,
+    required this.friendPhone,
+  }) : super(key: key);
   @override
   _SendMessegesFormState createState() => _SendMessegesFormState();
 }
@@ -23,9 +30,22 @@ class _SendMessegesFormState extends State<SendMessegesForm> {
 
   final _controller = TextEditingController();
   FocusNode _focus = FocusNode();
+  // UserDataModel? localUserPhone;
+
+  // Future<UserDataModel> userData() async {
+  //   var db = LocalDataBase.db;
+
+  //   await db.getUserData().then((value) {
+  //     print(value);
+  //     localUserPhone = value;
+  //     return localUserPhone;
+  //   });
+  //   return localUserPhone!;
+  // }
 
   @override
   void initState() {
+    //  userData();
     _focus.addListener(() {
       if (_focus.hasFocus) {
         setState(() {
@@ -43,12 +63,18 @@ class _SendMessegesFormState extends State<SendMessegesForm> {
     final user = FirebaseAuth.instance.currentUser!;
     final userName = await FirebaseFirestore.instance
         .collection(conUserCollectios)
-        .doc(user.uid)
+        .doc(widget.userPhone)
         .get();
     if (_key.currentState!.validate()) {
       _key.currentState!.save();
       await Provider.of<ChatScreenProvider>(context, listen: false).addMesseges(
-          _eneteredMessege, user.uid, userName[conuserName], widget.chatUserId);
+          context: context,
+          messeges: _eneteredMessege,
+          userId: user.uid,
+          userName: userName[conuserName],
+          chatUserId: widget.chatUserId,
+          userPhone: widget.userPhone,
+          freindPhone: widget.friendPhone);
       FocusScope.of(context).unfocus();
       _controller.clear();
       setState(() {
