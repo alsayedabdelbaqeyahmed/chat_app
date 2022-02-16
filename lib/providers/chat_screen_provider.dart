@@ -1,5 +1,4 @@
 import 'package:chatapp/constants/constants.dart';
-import 'package:chatapp/constants/userDataModel.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -37,7 +36,30 @@ class ChatScreenProvider with ChangeNotifier {
         conuserName: userName,
         conChatCreatedAt: Timestamp.now(),
         conChatUserId: friendUserId[conFriendPhone],
+        conFriendUserName: friendUserId[conFriendUserName] == null
+            ? freindPhone
+            : friendUserId[conFriendUserName]
       },
-    );
+    ).then((value) {
+      _chatAuth
+          .collection(conUserCollectios)
+          .doc(freindPhone)
+          .collection(conFriendCollection)
+          .doc(userPhone)
+          .collection(conChatCollectios)
+          .doc()
+          .set(
+        {
+          conUserId: userId,
+          conChatMesseges: messeges,
+          conuserName: userName,
+          conChatCreatedAt: Timestamp.now(),
+          conChatUserId: friendUserId[conFriendPhone],
+          conFriendUserName: friendUserId[conFriendUserName] == null
+              ? freindPhone
+              : friendUserId[conFriendUserName]
+        },
+      );
+    });
   }
 }

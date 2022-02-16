@@ -87,7 +87,7 @@ class AddFriendProvider with ChangeNotifier {
             .doc(userPhone)
             .set(
           {
-            conFriendUserName: '',
+            conFriendUserName: friendName == null ? null : friendName,
             conFriendPhone: userPhone,
             conUserImageUrl: currentUser[conUserImageUrl],
             conFriendId: currentUser[conUserId],

@@ -31,6 +31,7 @@ dependencies:
   country_code_picker: ^2.0.2
   country_picker: ^2.0.9
   provider: ^6.0.2
+  flutter_local_notifications:
   firebase_auth: ^3.3.5
   cloud_firestore: ^3.1.6
   emoji_picker_flutter: ^1.0.8
@@ -40,8 +41,7 @@ dependencies:
   awesome_dialog: ^2.1.2
   firebase_storage: ^10.2.5
   intl: ^0.17.0
-  firebase_messaging: ^11.2.5
-  flutter_local_notifications: ^9.2.0
+  firebase_messaging: ^11.2.6
   cloud_functions: ^3.2.5
   sqflite:
   path:

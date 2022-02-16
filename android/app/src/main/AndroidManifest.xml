@@ -5,7 +5,7 @@
    <application  
         android:requestLegacyExternalStorage="true"
         android:label="chatapp"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/ic_launcher"> 
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
@@ -28,15 +28,23 @@
                  Flutter's first frame. -->
             <meta-data
               android:name="io.flutter.embedding.android.SplashScreenDrawable"
-              android:resource="@drawable/launch_background"
-              />
+              android:resource="@drawable/launch_background"/>
             <meta-data
               android:name="com.google.firebase.messaging.default_notification_channel_id"
-              android:value="@string/default_notification_channel_id"
-                />
+              android:value="@string/sayed"/>
+            <meta-data
+              android:name="com.google.firebase.messaging.default_notification_icon"
+              android:resource="@mipmap/un" />
+            <meta-data
+              android:name="com.google.firebase.messaging.default_notification_color"
+              android:resource="@color/colorPrimary" />
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+            <intent-filter>
+              <action android:name="FLUTTER_NOTIFICATION_CLICK" />
+              <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <!-- Don't delete the meta-data below.

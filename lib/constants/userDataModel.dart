@@ -84,13 +84,13 @@ class LocalDataBase {
     var _db = await dataBase;
     try {
       List<Map<String, dynamic>> userMap = await _db!.query(conUserCollectios);
-      print(userMap);
+      // print(userMap);
       List<UserDataModel> userData = [];
       userMap.isNotEmpty
           ? userData = userMap.map((e) => UserDataModel.fromJason(e)).toList()
           // ignore: unnecessary_statements
           : [];
-      print(userData.last);
+      // print(userData.last);
       return userData.last;
     } catch (e) {
       print(e.toString());

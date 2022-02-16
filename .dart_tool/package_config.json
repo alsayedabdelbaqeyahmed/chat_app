@@ -165,31 +165,31 @@
     },
     {
       "name": "firebase_core_platform_interface",
-      "rootUri": "file:///Users/sayed/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core_platform_interface-4.2.3",
+      "rootUri": "file:///Users/sayed/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core_platform_interface-4.2.4",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "firebase_core_web",
-      "rootUri": "file:///Users/sayed/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core_web-1.5.3",
+      "rootUri": "file:///Users/sayed/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core_web-1.5.4",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "firebase_messaging",
-      "rootUri": "file:///Users/sayed/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_messaging-11.2.5",
+      "rootUri": "file:///Users/sayed/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_messaging-11.2.6",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "firebase_messaging_platform_interface",
-      "rootUri": "file:///Users/sayed/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_messaging_platform_interface-3.1.5",
+      "rootUri": "file:///Users/sayed/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_messaging_platform_interface-3.1.6",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "firebase_messaging_web",
-      "rootUri": "file:///Users/sayed/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_messaging_web-2.2.6",
+      "rootUri": "file:///Users/sayed/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_messaging_web-2.2.7",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -566,7 +566,7 @@
       "languageVersion": "2.12"
     }
   ],
-  "generated": "2022-02-03T15:02:21.439480Z",
+  "generated": "2022-02-10T18:28:35.379Z",
   "generator": "pub",
   "generatorVersion": "2.15.1"
 }

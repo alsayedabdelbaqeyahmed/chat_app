@@ -3,14 +3,19 @@ import 'package:chatapp/constants/userDataModel.dart';
 import 'package:chatapp/messeges/send_messeges_form.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import 'messege_container.dart';
 
 class MessegesScreen extends StatefulWidget {
-  final String? userId, currentUserId;
-  const MessegesScreen({Key? key, this.userId, this.currentUserId})
+  final String? friendUserId, currentUserId, friendPhone;
+  const MessegesScreen(
+      {Key? key,
+      this.friendUserId,
+      this.currentUserId,
+      required this.friendPhone})
       : super(key: key);
   static String createdAt = '0';
 
@@ -26,7 +31,7 @@ class _MessegesScreenState extends State<MessegesScreen> {
   var db = LocalDataBase.db;
   Future<UserDataModel> userData() async {
     await db.getUserData().then((value) {
-      print(value);
+      // print(value);
       // value.map((e) {
       //   localUserName = e.username;
       //   localUserPhone = e.userPhone2;
@@ -35,6 +40,16 @@ class _MessegesScreenState extends State<MessegesScreen> {
       return user;
     });
     return user!;
+  }
+
+  @override
+  void initState() {
+    var fcm = FirebaseMessaging.instance;
+    var token = fcm.getToken();
+    print(token.toString());
+    fcm.subscribeToTopic("chats");
+
+    super.initState();
   }
 
   @override
@@ -61,7 +76,7 @@ class _MessegesScreenState extends State<MessegesScreen> {
                             .collection(conUserCollectios)
                             .doc(user!.userPhone2)
                             .collection(conFriendCollection)
-                            .doc(user!.friendPhone)
+                            .doc(widget.friendPhone)
                             .collection(conChatCollectios)
                             .orderBy(conChatCreatedAt, descending: true)
                             .snapshots(),
@@ -122,7 +137,7 @@ class _MessegesScreenState extends State<MessegesScreen> {
                                         date: dateString,
                                         isUser: messegeData[index]
                                                 [conChatUserId] ==
-                                            widget.userId,
+                                            widget.friendUserId,
                                       );
                                     },
                                   ),
@@ -130,9 +145,9 @@ class _MessegesScreenState extends State<MessegesScreen> {
                         },
                       ),
                       SendMessegesForm(
-                        chatUserId: widget.userId,
+                        chatUserId: widget.friendUserId,
                         userPhone: user!.userPhone2,
-                        friendPhone: user!.friendPhone,
+                        friendPhone: widget.friendPhone,
                       ),
                     ],
                   );

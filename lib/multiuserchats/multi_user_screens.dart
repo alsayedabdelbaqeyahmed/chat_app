@@ -21,7 +21,7 @@ class _MultiUserChatsState extends State<MultiUserChats> {
   var db = LocalDataBase.db;
   Future<UserDataModel> userData() async {
     await db.getUserData().then((value) {
-      print(value);
+      //print(value);
       // value.map((e) {
       //   localUserName = e.username;
       //   localUserPhone = e.userPhone2;
@@ -73,6 +73,8 @@ class _MultiUserChatsState extends State<MultiUserChats> {
                               }
                               final userName =
                                   (userData.data as QuerySnapshot).docs;
+                              List? friendsData =
+                                  userName.map((e) => e.data()).toList();
 
                               return userName.isEmpty
                                   ? Expanded(
@@ -103,17 +105,21 @@ class _MultiUserChatsState extends State<MultiUserChats> {
                                       child: ListView.builder(
                                         itemBuilder: (ctx, index) {
                                           // print(index);
-                                          // print(userName.length);
+                                          // print(friendsData.length);
+                                          // print(friendsData);
                                           return InkWell(
                                             onTap: () =>
                                                 Navigator.of(context).push(
                                               MaterialPageRoute(
                                                 builder: (context) =>
                                                     ChatScreen(
-                                                  userId: userName[index]
-                                                      [conUserId],
-                                                  userName: userName[index]
-                                                      [conuserName],
+                                                  friendPhone:
+                                                      friendsData[index]
+                                                          [conFriendPhone],
+                                                  userId: friendsData[index]
+                                                      [conFriendId],
+                                                  userName: friendsData[index]
+                                                      [conFriendUserName],
                                                   currentUserId: FirebaseAuth
                                                       .instance
                                                       .currentUser!
@@ -129,36 +135,60 @@ class _MultiUserChatsState extends State<MultiUserChats> {
                                                 mainAxisAlignment:
                                                     MainAxisAlignment.start,
                                                 children: [
-                                                  // Padding(
-                                                  //   padding: EdgeInsets.only(
-                                                  //     left: size.width * 0.02,
-                                                  //   ),
-                                                  //   child: userImage(
-                                                  //     size,
-                                                  //     userName[index]
-                                                  //         [conUserImageUrl],
-                                                  //     false,
-                                                  //     isChat: true,
-                                                  //   ),
-                                                  // ),
+                                                  Padding(
+                                                    padding: EdgeInsets.only(
+                                                      left: size.width * 0.02,
+                                                    ),
+                                                    child: userImage(
+                                                      size,
+                                                      userName[index]
+                                                          [conUserImageUrl],
+                                                      false,
+                                                      isChat: true,
+                                                    ),
+                                                  ),
                                                   SizedBox(
                                                       width: size.width * .02),
                                                   Container(
                                                     padding: EdgeInsets.only(
                                                         //left: size.height * 0.01,
                                                         ),
-                                                    child: Text(
-                                                      userName[index]
-                                                          [conFriendUserName],
-                                                      style: TextStyle(
-                                                        color: Colors.black,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        fontSize:
-                                                            size.width * 0.05,
-                                                        // fontWeight: FontWeight.bold
-                                                      ),
-                                                    ),
+                                                    child: userName[index][
+                                                                    conFriendUserName] ==
+                                                                '' ||
+                                                            userName[index][
+                                                                    conFriendUserName] ==
+                                                                null
+                                                        ? Text(
+                                                            userName[index][
+                                                                conFriendPhone],
+                                                            style: TextStyle(
+                                                              color:
+                                                                  Colors.black,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                              fontSize:
+                                                                  size.width *
+                                                                      0.05,
+                                                              // fontWeight: FontWeight.bold
+                                                            ),
+                                                          )
+                                                        : Text(
+                                                            userName[index][
+                                                                conFriendUserName],
+                                                            style: TextStyle(
+                                                              color:
+                                                                  Colors.black,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                              fontSize:
+                                                                  size.width *
+                                                                      0.05,
+                                                              // fontWeight: FontWeight.bold
+                                                            ),
+                                                          ),
                                                   ),
                                                 ],
                                               ),

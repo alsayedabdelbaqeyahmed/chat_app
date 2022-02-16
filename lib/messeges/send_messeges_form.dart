@@ -68,13 +68,14 @@ class _SendMessegesFormState extends State<SendMessegesForm> {
     if (_key.currentState!.validate()) {
       _key.currentState!.save();
       await Provider.of<ChatScreenProvider>(context, listen: false).addMesseges(
-          context: context,
-          messeges: _eneteredMessege,
-          userId: user.uid,
-          userName: userName[conuserName],
-          chatUserId: widget.chatUserId,
-          userPhone: widget.userPhone,
-          freindPhone: widget.friendPhone);
+        context: context,
+        messeges: _eneteredMessege,
+        userId: user.uid,
+        userName: userName[conuserName],
+        chatUserId: widget.chatUserId,
+        userPhone: widget.userPhone,
+        freindPhone: widget.friendPhone,
+      );
       FocusScope.of(context).unfocus();
       _controller.clear();
       setState(() {
@@ -135,9 +136,10 @@ class _SendMessegesFormState extends State<SendMessegesForm> {
           ),
         ),
         show
-            ? SingleChildScrollView(
+            ? SizedBox(
+                height: size.height * 0.4,
+                width: double.infinity,
                 child: emojiPicker(),
-                scrollDirection: Axis.horizontal,
               )
             : SizedBox.shrink()
       ],
@@ -234,15 +236,20 @@ class _SendMessegesFormState extends State<SendMessegesForm> {
   Widget emojiPicker() {
     return EmojiPicker(
       onEmojiSelected: (category, emoji) {
-        // Do something when emoji is tapped
+        _controller
+          ..text += emoji.emoji
+          ..selection = TextSelection.fromPosition(
+              TextPosition(offset: _controller.text.length));
       },
       onBackspacePressed: () {
-        // Backspace-Button tapped logic
-        // Remove this line to also remove the button in the UI
+        _controller
+          ..text = _controller.text.characters.skipLast(1).toString()
+          ..selection = TextSelection.fromPosition(
+              TextPosition(offset: _controller.text.length));
       },
       config: Config(
-        columns: 4,
-        emojiSizeMax: 32 * (Platform.isIOS ? 1.30 : 1.0),
+        columns: 7,
+        emojiSizeMax: 30 * (Platform.isIOS ? 1.30 : 1.0),
         verticalSpacing: 0,
         horizontalSpacing: 0,
         initCategory: Category.RECENT,
