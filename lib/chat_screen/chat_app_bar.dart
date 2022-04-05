@@ -1,8 +1,11 @@
 import 'package:chatapp/constants/constants.dart';
+import 'package:chatapp/multiuserchats/multi_user_screens.dart';
+import 'package:chatapp/profile/profile.dart';
 import 'package:flutter/material.dart';
 
 class ChatAppBar extends StatelessWidget {
-  const ChatAppBar({Key? key}) : super(key: key);
+  final String? userphone;
+  const ChatAppBar({Key? key, this.userphone}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,6 +16,15 @@ class ChatAppBar extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
+          IconButton(
+            padding: EdgeInsetsDirectional.only(top: size.height * 0.03),
+            onPressed: () => Navigator.of(context)
+                .pushReplacementNamed(MultiUserChats.routeNames),
+            icon: Icon(
+              Icons.arrow_back,
+            ),
+          ),
+          // SizedBox(width: size.width * 0.0),
           Stack(
             children: [
               Padding(
@@ -45,7 +57,14 @@ class ChatAppBar extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              print('settings');
+              print(userphone);
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (ctx) => ProfileScreen(
+                    userPhone: userphone,
+                  ),
+                ),
+              );
             },
             child: Padding(
               padding: EdgeInsets.only(

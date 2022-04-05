@@ -12,28 +12,29 @@ class AddFriendScreen extends StatelessWidget {
       body: LayoutBuilder(
         builder: (context, constrain) {
           return SingleChildScrollView(
-            child: Column(
-              children: [
-                ChatAppBar(),
-                Padding(
-                  padding: EdgeInsetsDirectional.only(
-                    top: constrain.maxHeight * 0.05,
-                    bottom: constrain.maxHeight * 0.01,
+            child: SafeArea(
+              child: Column(
+                children: [
+                  Padding(
+                    padding: EdgeInsetsDirectional.only(
+                      top: constrain.maxHeight * 0.05,
+                      bottom: constrain.maxHeight * 0.01,
+                    ),
+                    child: Image.asset('assets/images/firends.png'),
                   ),
-                  child: Image.asset('assets/images/firends.png'),
-                ),
-                Padding(
-                  padding: EdgeInsetsDirectional.only(
-                    start: constrain.maxWidth * 0.05,
-                    end: constrain.maxWidth * .05,
-                    top: constrain.maxHeight * 0.05,
-                    bottom: constrain.maxHeight * 0.05,
+                  Padding(
+                    padding: EdgeInsetsDirectional.only(
+                      start: constrain.maxWidth * 0.05,
+                      end: constrain.maxWidth * .05,
+                      top: constrain.maxHeight * 0.05,
+                      bottom: constrain.maxHeight * 0.05,
+                    ),
+                    child: SignUpForm(
+                      isFrirend: true,
+                    ),
                   ),
-                  child: SignUpForm(
-                    isFrirend: true,
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
           );
         },

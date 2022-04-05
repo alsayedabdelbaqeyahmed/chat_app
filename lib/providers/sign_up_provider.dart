@@ -1,6 +1,8 @@
 import 'dart:io';
 import 'package:chatapp/add_friends/add_friends_screen.dart';
 import 'package:chatapp/constants/constants.dart';
+import 'package:chatapp/constants/userDataModel.dart';
+import 'package:chatapp/multiuserchats/multi_user_screens.dart';
 
 import 'package:chatapp/otp_screen/otp_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -38,6 +40,7 @@ class SignUpProvider with ChangeNotifier {
       await ref.putFile(image!).whenComplete(
         () async {
           final profileImageUrl = await ref.getDownloadURL();
+
           await FirebaseFirestore.instance
               .collection(conUserCollectios)
               .doc(phoneNumber)
@@ -53,15 +56,11 @@ class SignUpProvider with ChangeNotifier {
           ).whenComplete(
             () {
               _userId = authcredintial.user!.uid;
-              Navigator.of(context!).pushNamed(AddFriendScreen.routeName);
+              Navigator.of(context!).pushNamed(MultiUserChats.routeNames);
             },
           );
         },
       );
-
-      // if (_userId != null) {
-      //   Navigator.of(context).pushNamed(MultiUserChats.routeNames);
-      // }
     } catch (e) {
       print(e);
     }
@@ -103,8 +102,65 @@ class SignUpProvider with ChangeNotifier {
           userphone = phoneNumber;
         },
         codeAutoRetrievalTimeout: (verificationId) async {},
-        //timeout: Duration(seconds: 60),
       );
     } catch (e) {}
+  }
+
+  Future<void> signOut() async {
+    try {
+      var db = LocalDataBase.db;
+      await db.deleteAllData().then(
+        (value) async {
+          final ref = FirebaseStorage.instance
+              .ref()
+              .child('Profile_Image')
+              .child(_userId! + '.jpg');
+          ref.delete();
+          await _auth.signOut();
+        },
+      );
+    } catch (e) {}
+  }
+
+  Future<void> deleteAccount() async {
+    try {
+      var db = LocalDataBase.db;
+      await db.deleteAllData().then(
+        (value) async {
+          final ref = FirebaseStorage.instance
+              .ref()
+              .child('Profile_Image')
+              .child(_userId! + '.jpg');
+          ref.delete();
+          final delete = _auth.currentUser;
+          await delete!.delete();
+        },
+      );
+    } catch (e) {}
+  }
+
+  Future<void> updateProfilePhoto({File? image, String? phoneNumber}) async {
+    final currentUser = await FirebaseFirestore.instance
+        .collection(conUserCollectios)
+        .doc(phoneNumber)
+        .get();
+    final ref = FirebaseStorage.instance
+        .ref()
+        .child('Profile_Image')
+        .child(currentUser[conUserId] + '.jpg');
+    await ref.putFile(image!).whenComplete(
+      () async {
+        final profileImageUrl = await ref.getDownloadURL();
+
+        await FirebaseFirestore.instance
+            .collection(conUserCollectios)
+            .doc(phoneNumber)
+            .update(
+          {
+            conUserImageUrl: profileImageUrl.toString(),
+          },
+        );
+      },
+    );
   }
 }

@@ -167,10 +167,11 @@ class _TakeImageState extends State<TakeImage> {
                   size: size,
                   press: () async {
                     await providerData.signUpWithPhone(
-                        phonecredintial: argData[0]!,
-                        context: context,
-                        image: _selectedImage!,
-                        phoneNumber: argData[1]);
+                      phonecredintial: argData[0]!,
+                      context: context,
+                      image: _selectedImage!,
+                      phoneNumber: argData[1],
+                    );
                   },
                   text: 'Finish',
                   textcolors: textColor,

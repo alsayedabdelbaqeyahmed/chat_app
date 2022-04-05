@@ -1,4 +1,3 @@
-import 'package:chatapp/chat_screen/chat_screen.dart';
 import 'package:chatapp/constants/constants.dart';
 import 'package:chatapp/constants/local_notififcation.dart';
 import 'package:chatapp/constants/routes.dart';
@@ -80,8 +79,6 @@ class _MyAppState extends State<MyApp> {
     return StreamBuilder(
       stream: FirebaseAuth.instance.authStateChanges(),
       builder: (ctx, userData) {
-        // print(userData.hasData);
-        // print(userData.data);
         if (userData.hasData == true) {
           return MultiUserChats();
         } else {

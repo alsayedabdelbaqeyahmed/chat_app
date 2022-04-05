@@ -1,4 +1,3 @@
-import 'package:chatapp/chat_screen/chat_screen.dart';
 import 'package:chatapp/constants/constants.dart';
 import 'package:chatapp/constants/default_buttons.dart';
 import 'package:chatapp/constants/userDataModel.dart';
@@ -32,7 +31,7 @@ class _SignUpFormState extends State<SignUpForm> {
     // var db = LocalDataBase.db;
 
     await userData.getUserData().then((value) {
-      print(value);
+      // print(value);
       localUser = value;
       return localUser;
     });
@@ -47,7 +46,10 @@ class _SignUpFormState extends State<SignUpForm> {
       key: _formkey,
       child: Column(
         children: [
-          userInputForm(size: size, context: context, hintText: 'userName'),
+          widget.isFrirend!
+              ? SizedBox.shrink()
+              : userInputForm(
+                  size: size, context: context, hintText: 'userName'),
           SizedBox(height: size.height * 0.05),
           Container(
             width: double.infinity,
@@ -122,11 +124,12 @@ class _SignUpFormState extends State<SignUpForm> {
                     : await friendProvider
                         .addFriends(
                         context: context,
-                        friendName: name,
+                        //friendName: name,
                         userPhone: localUser!.userPhone2,
                         friendNumber: countryType?.dialCode != null
                             ? countryType!.dialCode! + phone!
                             : '+20',
+                        // userName: localUser!.username,
                       )
                         .then(
                         (value) {

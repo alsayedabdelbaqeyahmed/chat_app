@@ -1,4 +1,3 @@
-
 import 'package:chatapp/constants/constants.dart';
 import 'package:chatapp/constants/default_buttons.dart';
 import 'package:chatapp/otp_screen/take_profile_image.dart';
@@ -46,6 +45,7 @@ class _OtpFormScreenState extends State<OtpFormScreen> {
                   verificationId: argData[0]!,
                   smsCode: _codeController1.text,
                 );
+
                 Navigator.of(context).pushNamed(TakeImage.routeNames,
                     arguments: [phoneAuthCredential, argData[1]]);
                 // Navigator.of(context).pushNamed(AddFriendScreen.routeName);

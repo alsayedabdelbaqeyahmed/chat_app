@@ -21,6 +21,7 @@ class ChatScreenProvider with ChangeNotifier {
         .collection(conFriendCollection)
         .doc(freindPhone)
         .get();
+    //  final chatId = friendUserId[conChatId];
 
     _chatAuth
         .collection(conUserCollectios)

@@ -97,4 +97,14 @@ class LocalDataBase {
       throw (e);
     }
   }
+
+  Future<int> deleteAllData() async {
+    var _db = await dataBase;
+    try {
+      return _db!.delete(conUserCollectios);
+    } catch (e) {
+      print(e);
+      throw (e);
+    }
+  }
 }

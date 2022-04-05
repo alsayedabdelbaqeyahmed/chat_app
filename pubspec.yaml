@@ -45,6 +45,7 @@ dependencies:
   cloud_functions: ^3.2.5
   sqflite:
   path:
+  flutter_svg:
 
 dev_dependencies:
   flutter_test:

@@ -10,13 +10,21 @@ import 'package:intl/intl.dart';
 import 'messege_container.dart';
 
 class MessegesScreen extends StatefulWidget {
-  final String? friendUserId, currentUserId, friendPhone;
-  const MessegesScreen(
-      {Key? key,
-      this.friendUserId,
-      this.currentUserId,
-      required this.friendPhone})
-      : super(key: key);
+  final String? friendUserId,
+      currentUserId,
+      friendPhone,
+      chatId,
+      friendChatId,
+      myPhone;
+  const MessegesScreen({
+    Key? key,
+    this.friendUserId,
+    this.currentUserId,
+    required this.friendPhone,
+    this.chatId,
+    this.friendChatId,
+    this.myPhone,
+  }) : super(key: key);
   static String createdAt = '0';
 
   @override
@@ -42,15 +50,15 @@ class _MessegesScreenState extends State<MessegesScreen> {
     return user!;
   }
 
-  @override
-  void initState() {
-    var fcm = FirebaseMessaging.instance;
-    var token = fcm.getToken();
-    print(token.toString());
-    fcm.subscribeToTopic("chats");
+  // @override
+  // void initState() {
+  //  // var fcm = FirebaseMessaging.instance;
+  //   // var token = fcm.getToken();
+  //   // print(token.toString());
+  //   //fcm.subscribeToTopic("messages");
 
-    super.initState();
-  }
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -89,9 +97,9 @@ class _MessegesScreenState extends State<MessegesScreen> {
 
                           final List? messegeData =
                               (data.data as QuerySnapshot).docs;
-                          print(messegeData!.isEmpty);
+                          // print(messegeData!.isEmpty);
 
-                          return messegeData.isEmpty
+                          return messegeData!.isEmpty
                               ? Expanded(
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
