@@ -1,4 +1,4 @@
-#Tue Apr 05 14:53:46 EET 2022
+#Wed Apr 06 14:46:33 EET 2022
 base.2=/Users/sayed/Desktop/Flutter_App/chat-App-firebase/build/app/intermediates/dex/debug/mergeDexDebug/classes3.dex
 path.2=classes3.dex
 base.1=/Users/sayed/Desktop/Flutter_App/chat-App-firebase/build/app/intermediates/dex/debug/mergeDexDebug/classes2.dex

@@ -2,6 +2,10 @@ chatapp
 2.12
 file:///Users/sayed/Desktop/Flutter_App/chat-App-firebase/
 file:///Users/sayed/Desktop/Flutter_App/chat-App-firebase/lib/
+archive
+2.12
+file:///Users/sayed/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/archive-3.3.0/
+file:///Users/sayed/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/archive-3.3.0/lib/
 args
 2.12
 file:///Users/sayed/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/args-2.3.0/
@@ -70,6 +74,10 @@ cross_file
 2.12
 file:///Users/sayed/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/cross_file-0.3.2/
 file:///Users/sayed/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/cross_file-0.3.2/lib/
+crypto
+2.12
+file:///Users/sayed/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/crypto-3.0.1/
+file:///Users/sayed/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/crypto-3.0.1/lib/
 cupertino_icons
 2.12
 file:///Users/sayed/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/cupertino_icons-1.0.4/
@@ -146,6 +154,10 @@ flare_flutter
 2.12
 file:///Users/sayed/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/flare_flutter-3.0.2/
 file:///Users/sayed/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/flare_flutter-3.0.2/lib/
+flutter_launcher_icons
+2.12
+file:///Users/sayed/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_launcher_icons-0.9.2/
+file:///Users/sayed/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_launcher_icons-0.9.2/lib/
 flutter_lints
 2.12
 file:///Users/sayed/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_lints-1.0.4/
@@ -178,6 +190,10 @@ http_parser
 2.12
 file:///Users/sayed/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/http_parser-4.0.0/
 file:///Users/sayed/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/http_parser-4.0.0/lib/
+image
+2.12
+file:///Users/sayed/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/image-3.1.3/
+file:///Users/sayed/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/image-3.1.3/lib/
 image_picker
 2.14
 file:///Users/sayed/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/image_picker-0.8.4+4/
@@ -370,6 +386,10 @@ xml
 2.14
 file:///Users/sayed/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/xml-5.3.1/
 file:///Users/sayed/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/xml-5.3.1/lib/
+yaml
+2.12
+file:///Users/sayed/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/yaml-3.1.0/
+file:///Users/sayed/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/yaml-3.1.0/lib/
 sky_engine
 2.12
 file:///Users/sayed/Developer/flutter/bin/cache/pkg/sky_engine/

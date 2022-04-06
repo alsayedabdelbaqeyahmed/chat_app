@@ -4,6 +4,10 @@
         "source": "/Users/sayed/Desktop/Flutter_App/chat-App-firebase/android/app/src/main/res/mipmap-xhdpi/un.png"
     },
     {
+        "merged": "/Users/sayed/Desktop/Flutter_App/chat-App-firebase/build/app/intermediates/res/merged/debug/drawable-v21_bg.png.flat",
+        "source": "/Users/sayed/Desktop/Flutter_App/chat-App-firebase/android/app/src/main/res/drawable-v21/bg.png"
+    },
+    {
         "merged": "/Users/sayed/Desktop/Flutter_App/chat-App-firebase/build/app/intermediates/res/merged/debug/mipmap-hdpi_un.png.flat",
         "source": "/Users/sayed/Desktop/Flutter_App/chat-App-firebase/android/app/src/main/res/mipmap-hdpi/un.png"
     },
@@ -38,6 +42,10 @@
     {
         "merged": "/Users/sayed/Desktop/Flutter_App/chat-App-firebase/build/app/intermediates/res/merged/debug/drawable_launch_background.xml.flat",
         "source": "/Users/sayed/Desktop/Flutter_App/chat-App-firebase/android/app/src/main/res/drawable/launch_background.xml"
+    },
+    {
+        "merged": "/Users/sayed/Desktop/Flutter_App/chat-App-firebase/build/app/intermediates/res/merged/debug/drawable_bg.png.flat",
+        "source": "/Users/sayed/Desktop/Flutter_App/chat-App-firebase/android/app/src/main/res/drawable/bg.png"
     },
     {
         "merged": "/Users/sayed/Desktop/Flutter_App/chat-App-firebase/build/app/intermediates/res/merged/debug/mipmap-xxxhdpi_un.png.flat",
