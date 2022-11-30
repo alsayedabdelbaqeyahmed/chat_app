@@ -3,7 +3,8 @@ import 'dart:io';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:chatapp/constants/constants.dart';
 import 'package:chatapp/constants/userDataModel.dart';
-import 'package:chatapp/providers/sign_up_provider.dart';
+import 'package:chatapp/presentation/controller/providers/sign_up_provider.dart';
+import 'package:chatapp/presentation/style/app_string.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -135,31 +136,31 @@ class _ProfilePicState extends State<ProfilePic> {
       dialogType: DialogType.QUESTION,
       body: Column(children: [
         Text(
-          'Chose the sorce Image',
+          AppStringConstants.choseImage,
           style: TextStyle(color: Colors.black, fontSize: size.height * 0.02),
         ),
         SizedBox(height: size.height * 0.005),
         Text(
-          'Camera or gallery',
+          AppStringConstants.cameraOrGallery,
           style: TextStyle(color: Colors.red, fontSize: size.height * 0.025),
         ),
       ]),
-      btnOkText: 'camera',
+      btnOkText: AppStringConstants.camera,
       btnOkOnPress: () => setState(() {
-        _sourceofImage = 'camera';
+        _sourceofImage = AppStringConstants.camera;
       }),
-      btnCancelText: 'gallery',
+      btnCancelText: AppStringConstants.gallery,
       btnCancelOnPress: () => setState(() {
-        _sourceofImage = 'gallery';
+        _sourceofImage = AppStringConstants.gallery;
       }),
     ).show();
   }
 
   Future pickImage(BuildContext context) async {
     final pickedImage = await picker.pickImage(
-      source: _sourceofImage == 'camera'.trim()
+      source: _sourceofImage == AppStringConstants.camera.trim()
           ? ImageSource.camera
-          : _sourceofImage == 'gallery'.trim()
+          : _sourceofImage == AppStringConstants.gallery.trim()
               ? ImageSource.gallery
               : ImageSource.camera,
     );

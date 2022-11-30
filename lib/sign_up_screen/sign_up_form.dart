@@ -1,9 +1,10 @@
 import 'package:chatapp/constants/constants.dart';
 import 'package:chatapp/constants/default_buttons.dart';
 import 'package:chatapp/constants/userDataModel.dart';
-import 'package:chatapp/providers/add_friend_provider.dart';
+import 'package:chatapp/presentation/controller/providers/add_friend_provider.dart';
 
-import 'package:chatapp/providers/sign_up_provider.dart';
+import 'package:chatapp/presentation/controller/providers/sign_up_provider.dart';
+import 'package:chatapp/presentation/style/app_string.dart';
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -49,7 +50,9 @@ class _SignUpFormState extends State<SignUpForm> {
           widget.isFrirend!
               ? SizedBox.shrink()
               : userInputForm(
-                  size: size, context: context, hintText: 'userName'),
+                  size: size,
+                  context: context,
+                  hintText: AppStringConstants.userName),
           SizedBox(height: size.height * 0.05),
           Container(
             width: double.infinity,
@@ -69,7 +72,9 @@ class _SignUpFormState extends State<SignUpForm> {
                 children: [
                   countryPicker(),
                   Text(
-                    countryType?.name == null ? 'مصر' : countryType!.name!,
+                    countryType?.name == null
+                        ? AppStringConstants.egypt
+                        : countryType!.name!,
                     style: TextStyle(
                       color: textColor,
                       fontSize: size.height * 0.04,
@@ -80,12 +85,17 @@ class _SignUpFormState extends State<SignUpForm> {
             ),
           ),
           SizedBox(height: size.height * 0.05),
-          userInputForm(size: size, context: context, hintText: 'Phone Number'),
+          userInputForm(
+              size: size,
+              context: context,
+              hintText: AppStringConstants.phoneNumber),
           SizedBox(height: size.height * 0.05),
           SizedBox(height: size.height * 0.08),
           DefaultButton(
             buttoncolors: primaryColor,
-            text: widget.isFrirend! ? 'Add New Friend' : 'Done',
+            text: widget.isFrirend!
+                ? AppStringConstants.addNewFriend
+                : AppStringConstants.done,
             textcolors: Colors.white,
             size: size,
             press: () async {
@@ -115,7 +125,7 @@ class _SignUpFormState extends State<SignUpForm> {
                         context: context,
                         name: name,
                         country: countryType?.name == null
-                            ? 'مصر'
+                            ? AppStringConstants.egypt
                             : countryType!.name,
                         dialCode: countryType?.dialCode == null
                             ? '+20'
@@ -196,17 +206,17 @@ class _SignUpFormState extends State<SignUpForm> {
       onEditingComplete: () => FocusScope.of(context!).unfocus(),
       validator: (val) {
         if (val!.isEmpty) {
-          return 'please enter a valid value';
+          return AppStringConstants.validValue;
         }
-        if (hintText == 'Phone Number'.trim() &&
-            val.contains(RegExp(r"^[a-zA-Z]+@[a-zA-Z]+\.[a-zA-Z]+"))) {
-          return 'please enter a valid phone number';
+        if (hintText == AppStringConstants.phoneNumber.trim() &&
+            val.contains(RegExp(AppStringConstants.validNumberCondition))) {
+          return AppStringConstants.validNumber;
         }
 
         return null;
       },
       onSaved: (val) {
-        if (hintText == 'Phone Number'.trim()) {
+        if (hintText == AppStringConstants.phoneNumber.trim()) {
           setState(() {
             phone = val;
           });

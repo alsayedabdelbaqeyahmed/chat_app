@@ -1,3 +1,4 @@
+import 'package:chatapp/presentation/style/app_assets.dart';
 import 'package:flutter/material.dart';
 
 Widget logo({Size? size, int? currentPage}) {
@@ -6,11 +7,11 @@ Widget logo({Size? size, int? currentPage}) {
       Container(
         child: currentPage == 0
             ? Image.asset(
-                'assets/images/Logo.png',
+                AppAssetsConstants.logo,
                 width: size!.height * 0.3,
               )
             : Image.asset(
-                'assets/images/Logo2.png',
+                AppAssetsConstants.logo2,
                 width: size!.height * 0.3,
               ),
       ),

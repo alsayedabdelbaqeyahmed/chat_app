@@ -20,3 +20,7 @@ const conFriendPhone = 'friendPhone';
 const conFriendCollection = 'friends';
 const conFriendId = 'friendId';
 const conChatId = 'chatId';
+const conProfile_Image = 'Profile_Image';
+const conJpg = '.jpg';
+const conImage = 'image';
+const conText = 'text';

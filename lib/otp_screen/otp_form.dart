@@ -1,6 +1,7 @@
 import 'package:chatapp/constants/constants.dart';
 import 'package:chatapp/constants/default_buttons.dart';
 import 'package:chatapp/otp_screen/take_profile_image.dart';
+import 'package:chatapp/presentation/style/app_string.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/material.dart';
@@ -51,7 +52,7 @@ class _OtpFormScreenState extends State<OtpFormScreen> {
                 // Navigator.of(context).pushNamed(AddFriendScreen.routeName);
               }
             },
-            text: 'Continue',
+            text: AppStringConstants.contin,
             size: size,
             buttoncolors: primaryColor,
             textcolors: Colors.white,
@@ -77,7 +78,7 @@ class _OtpFormScreenState extends State<OtpFormScreen> {
 
   InputDecoration inputdecoretion(Size size) {
     return InputDecoration(
-      labelText: 'code',
+      labelText: AppStringConstants.code,
       contentPadding: EdgeInsets.only(
         top: size.height * 0.025,
         bottom: size.height * 0.025,

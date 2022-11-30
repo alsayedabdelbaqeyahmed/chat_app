@@ -3,9 +3,9 @@ import 'package:chatapp/constants/local_notififcation.dart';
 import 'package:chatapp/constants/routes.dart';
 import 'package:chatapp/multiuserchats/multi_user_screens.dart';
 
-import 'package:chatapp/providers/add_friend_provider.dart';
-import 'package:chatapp/providers/sign_up_provider.dart';
-import 'package:chatapp/providers/chat_screen_provider.dart';
+import 'package:chatapp/presentation/controller/providers/add_friend_provider.dart';
+import 'package:chatapp/presentation/controller/providers/sign_up_provider.dart';
+import 'package:chatapp/presentation/controller/providers/chat_screen_provider.dart';
 import 'package:chatapp/splash_screen/splash_screen.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';

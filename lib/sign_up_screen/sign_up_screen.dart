@@ -1,4 +1,5 @@
 import 'package:chatapp/constants/constants.dart';
+import 'package:chatapp/presentation/style/app_string.dart';
 
 import 'package:chatapp/sign_up_screen/sign_up_form.dart';
 import 'package:chatapp/splash_screen/logo.dart';
@@ -25,7 +26,7 @@ class SignUpScreen extends StatelessWidget {
                   logo(size: size),
                   SizedBox(height: size.height * 0.09),
                   Text(
-                    'Please register with your own \nnumber',
+                    AppStringConstants.register_number,
                     style: TextStyle(
                         color: textColor,
                         fontSize: size.height * 0.025,

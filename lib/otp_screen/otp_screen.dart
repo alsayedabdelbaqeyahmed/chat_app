@@ -1,5 +1,7 @@
 import 'package:chatapp/constants/constants.dart';
 import 'package:chatapp/otp_screen/start_image.dart';
+import 'package:chatapp/presentation/style/app_assets.dart';
+import 'package:chatapp/presentation/style/app_string.dart';
 import 'package:flutter/material.dart';
 
 import 'otp_form.dart';
@@ -21,14 +23,14 @@ class OtpScreen extends StatelessWidget {
               children: [
                 SizedBox(height: size.height * .1),
                 Image.asset(
-                  'assets/images/Path 18.png',
+                  AppAssetsConstants.path_18,
                   height: size.height * 0.08,
                 ),
                 SizedBox(height: size.height * .02),
                 StartImageWidget(),
                 SizedBox(height: size.height * .05),
                 Text(
-                  'We sendet to your phone message \nto confirm your phone number.',
+                  AppStringConstants.otpMessege,
                   style: TextStyle(
                       color: textColor, fontSize: size.height * 0.028),
                   textAlign: TextAlign.center,

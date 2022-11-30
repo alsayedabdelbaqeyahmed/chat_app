@@ -1,6 +1,8 @@
 import 'package:chatapp/constants/constants.dart';
 import 'package:chatapp/constants/default_buttons.dart';
 import 'package:chatapp/constants/splash_screen_texts_images.dart';
+import 'package:chatapp/presentation/style/app_assets.dart';
+import 'package:chatapp/presentation/style/app_string.dart';
 import 'package:chatapp/sign_up_screen/sign_up_screen.dart';
 import 'package:chatapp/splash_screen/logo.dart';
 import 'package:chatapp/splash_screen/splash_spot.dart';
@@ -26,7 +28,7 @@ class _SplashScreenState extends State<SplashScreen> {
         decoration: BoxDecoration(
           image: _currentPage == 0
               ? DecorationImage(
-                  image: AssetImage('assets/images/Bg.png'),
+                  image: AssetImage(AppAssetsConstants.bg),
                   fit: BoxFit.cover,
                 )
               : null,
@@ -59,7 +61,9 @@ class _SplashScreenState extends State<SplashScreen> {
                 press: () => Navigator.of(context).pushNamedAndRemoveUntil(
                     SignUpScreen.routeNames, (route) => false),
                 buttoncolors: _currentPage == 0 ? Colors.white : primaryColor,
-                text: _currentPage == 2 ? 'Finsh' : 'Next',
+                text: _currentPage == 2
+                    ? AppStringConstants.finish
+                    : AppStringConstants.next,
               )
             ],
           ),
@@ -80,12 +84,12 @@ class _SplashScreenState extends State<SplashScreen> {
         ),
         itemBuilder: (ctx, index) => ListView(
           children: [
-            image(size, splashData[index]['image']!, _currentPage),
+            image(size, splashData[index][conImage]!, _currentPage),
             SizedBox(height: size.height * 0.01),
             Padding(
               padding: EdgeInsets.all(size.height * 0.04),
               child: Text(
-                splashData[index]['text']!,
+                splashData[index][conText]!,
                 style: TextStyle(fontSize: size.height * 0.03),
                 textAlign: TextAlign.center,
               ),

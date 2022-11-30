@@ -1,3 +1,4 @@
+import 'package:chatapp/presentation/style/app_assets.dart';
 import 'package:flutter/material.dart';
 
 class StartImageWidget extends StatelessWidget {
@@ -25,11 +26,11 @@ class StartImageWidget extends StatelessWidget {
           children: [
             image(
                 size: size,
-                assets: 'assets/images/Path 20.png',
+                assets: AppAssetsConstants.path_20,
                 hight: size.height * .2),
-            image(size: size, assets: 'assets/images/Path 20.png'),
-            image(size: size, assets: 'assets/images/Path 20.png'),
-            image(size: size, assets: 'assets/images/Path 20.png'),
+            image(size: size, assets: AppAssetsConstants.path_20),
+            image(size: size, assets: AppAssetsConstants.path_20),
+            image(size: size, assets: AppAssetsConstants.path_20),
           ],
         ),
       ),

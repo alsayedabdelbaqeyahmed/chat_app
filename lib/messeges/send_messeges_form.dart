@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:chatapp/constants/constants.dart';
 import 'package:chatapp/constants/userDataModel.dart';
-import 'package:chatapp/providers/chat_screen_provider.dart';
+import 'package:chatapp/presentation/controller/providers/chat_screen_provider.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
@@ -253,15 +253,13 @@ class _SendMessegesFormState extends State<SendMessegesForm> {
         verticalSpacing: 0,
         horizontalSpacing: 0,
         initCategory: Category.RECENT,
-        bgColor: Color(0xFFF2F2F2),
+        bgColor: const Color(0xFFF2F2F2),
         indicatorColor: Colors.blue,
         iconColor: Colors.grey,
         iconColorSelected: Colors.blue,
-        progressIndicatorColor: Colors.blue,
         showRecentsTab: true,
         recentsLimit: 28,
-        noRecentsText: "No Recents",
-        noRecentsStyle: const TextStyle(fontSize: 20, color: Colors.black26),
+        noRecents: const Text("No recent Image"),
         tabIndicatorAnimDuration: kTabScrollDuration,
         categoryIcons: const CategoryIcons(),
         buttonMode: ButtonMode.MATERIAL,

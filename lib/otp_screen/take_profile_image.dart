@@ -2,7 +2,9 @@ import 'dart:io';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:chatapp/constants/constants.dart';
 import 'package:chatapp/constants/default_buttons.dart';
-import 'package:chatapp/providers/sign_up_provider.dart';
+import 'package:chatapp/presentation/controller/providers/sign_up_provider.dart';
+import 'package:chatapp/presentation/style/app_assets.dart';
+import 'package:chatapp/presentation/style/app_string.dart';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -29,31 +31,31 @@ class _TakeImageState extends State<TakeImage> {
       dialogType: DialogType.QUESTION,
       body: Column(children: [
         Text(
-          'Chose the sorce Image',
+          AppStringConstants.choseImage,
           style: TextStyle(color: Colors.black, fontSize: size.height * 0.02),
         ),
         SizedBox(height: size.height * 0.005),
         Text(
-          'Camera or gallery',
+          AppStringConstants.cameraOrGallery,
           style: TextStyle(color: Colors.red, fontSize: size.height * 0.025),
         ),
       ]),
-      btnOkText: 'camera',
+      btnOkText: AppStringConstants.camera,
       btnOkOnPress: () => setState(() {
-        _sourceofImage = 'camera';
+        _sourceofImage = AppStringConstants.camera;
       }),
-      btnCancelText: 'gallery',
+      btnCancelText: AppStringConstants.gallery,
       btnCancelOnPress: () => setState(() {
-        _sourceofImage = 'gallery';
+        _sourceofImage = AppStringConstants.gallery;
       }),
     ).show();
   }
 
   Future pickImage(BuildContext context) async {
     final pickedImage = await picker.pickImage(
-      source: _sourceofImage == 'camera'.trim()
+      source: _sourceofImage == AppStringConstants.camera.trim()
           ? ImageSource.camera
-          : _sourceofImage == 'gallery'.trim()
+          : _sourceofImage == AppStringConstants.gallery.trim()
               ? ImageSource.gallery
               : ImageSource.camera,
     );
@@ -76,12 +78,12 @@ class _TakeImageState extends State<TakeImage> {
         children: [
           SizedBox(height: size.height * 0.1),
           Image.asset(
-            'assets/images/Logo2.png',
+            AppAssetsConstants.logo2,
             width: size.height * 0.3,
           ),
           SizedBox(height: size.height * 0.02),
           Text(
-            'Pick up the profile image',
+            AppStringConstants.pickImage,
             style: TextStyle(color: textColor, fontSize: size.height * 0.02),
           ),
           SizedBox(height: size.height * 0.02),
@@ -102,7 +104,7 @@ class _TakeImageState extends State<TakeImage> {
                   child: _selectedImage == null
                       ? Center(
                           child: Text(
-                            'Your Image',
+                            AppStringConstants.yourImage,
                             style: TextStyle(
                               fontSize: size.height * 0.05,
                               color: textColor,
@@ -159,7 +161,7 @@ class _TakeImageState extends State<TakeImage> {
                       isTaking = true;
                     });
                   },
-                  text: 'select the imgae',
+                  text: AppStringConstants.selectImage,
                   textcolors: textColor,
                   buttoncolors: primaryColor,
                 )
@@ -173,7 +175,7 @@ class _TakeImageState extends State<TakeImage> {
                       phoneNumber: argData[1],
                     );
                   },
-                  text: 'Finish',
+                  text: AppStringConstants.finish,
                   textcolors: textColor,
                   buttoncolors: primaryColor,
                 )
