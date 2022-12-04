@@ -1,4 +1,5 @@
 import 'package:chatapp/constants/constants.dart';
+import 'package:chatapp/presentation/style/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class SplashSpot extends StatelessWidget {
@@ -18,10 +19,10 @@ class SplashSpot extends StatelessWidget {
         color: currentPage == 0 && currentPage == index
             ? Colors.white
             : currentPage == index
-                ? primaryColor
+                ? AppColors.primaryColor
                 : Colors.transparent,
-        border:
-            Border.all(color: currentPage == 0 ? Colors.white : primaryColor),
+        border: Border.all(
+            color: currentPage == 0 ? Colors.white : AppColors.primaryColor),
         borderRadius: BorderRadius.circular(20),
       ),
     );

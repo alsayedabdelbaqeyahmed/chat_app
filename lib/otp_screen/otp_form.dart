@@ -2,6 +2,7 @@ import 'package:chatapp/constants/constants.dart';
 import 'package:chatapp/constants/default_buttons.dart';
 import 'package:chatapp/otp_screen/take_profile_image.dart';
 import 'package:chatapp/presentation/style/app_string.dart';
+import 'package:chatapp/presentation/style/app_theme.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/material.dart';
@@ -54,7 +55,7 @@ class _OtpFormScreenState extends State<OtpFormScreen> {
             },
             text: AppStringConstants.contin,
             size: size,
-            buttoncolors: primaryColor,
+            buttoncolors: AppColors.primaryColor,
             textcolors: Colors.white,
           )
         ],
@@ -92,7 +93,7 @@ class _OtpFormScreenState extends State<OtpFormScreen> {
     return OutlineInputBorder(
         borderRadius: BorderRadius.circular(size.width * 0.3),
         borderSide: BorderSide(
-          color: textColor,
+          color: AppColors.textColor,
         ));
   }
 }

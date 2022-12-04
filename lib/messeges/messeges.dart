@@ -1,6 +1,9 @@
 import 'package:chatapp/constants/constants.dart';
 import 'package:chatapp/constants/userDataModel.dart';
 import 'package:chatapp/messeges/send_messeges_form.dart';
+import 'package:chatapp/presentation/style/app_assets.dart';
+import 'package:chatapp/presentation/style/app_string.dart';
+import 'package:chatapp/presentation/style/app_theme.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -81,12 +84,13 @@ class _MessegesScreenState extends State<MessegesScreen> {
                     children: [
                       StreamBuilder(
                         stream: FirebaseFirestore.instance
-                            .collection(conUserCollectios)
+                            .collection(AppConstansts.conUserCollectios)
                             .doc(user!.userPhone2)
-                            .collection(conFriendCollection)
+                            .collection(AppConstansts.conFriendCollection)
                             .doc(widget.friendPhone)
-                            .collection(conChatCollectios)
-                            .orderBy(conChatCreatedAt, descending: true)
+                            .collection(AppConstansts.conChatCollectios)
+                            .orderBy(AppConstansts.conChatCreatedAt,
+                                descending: true)
                             .snapshots(),
                         builder: (ctx, data) {
                           if (data.connectionState == ConnectionState.waiting) {
@@ -105,15 +109,15 @@ class _MessegesScreenState extends State<MessegesScreen> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Image.asset(
-                                        'assets/images/welcome.png',
+                                        AppAssetsConstants.welcome,
                                         width: size.height * 0.15,
                                       ),
                                       SizedBox(height: size.height * 0.02),
                                       Text(
-                                        'Start chating now',
+                                        AppStringConstants.startChat,
                                         style: TextStyle(
                                           fontSize: size.height * 0.04,
-                                          color: textColor,
+                                          color: AppColors.textColor,
                                         ),
                                       )
                                     ],
@@ -126,7 +130,8 @@ class _MessegesScreenState extends State<MessegesScreen> {
                                     itemBuilder: (ctx, index) {
                                       final dates =
                                           DateTime.fromMillisecondsSinceEpoch(
-                                        messegeData[index][conChatCreatedAt]
+                                        messegeData[index]
+                                                [AppConstansts.conChatCreatedAt]
                                             .millisecondsSinceEpoch,
                                       );
                                       final dateFormat = DateFormat.Hm();
@@ -136,15 +141,16 @@ class _MessegesScreenState extends State<MessegesScreen> {
                                       return MessegeContainer(
                                         userPhone: user!.userPhone2,
                                         messgeg: messegeData[index]
-                                            [conChatMesseges],
+                                            [AppConstansts.conChatMesseges],
                                         isMe: FirebaseAuth
                                                 .instance.currentUser!.uid ==
-                                            messegeData[index][conUserId],
+                                            messegeData[index]
+                                                [AppConstansts.conUserId],
                                         userName: messegeData[index]
-                                            [conuserName],
+                                            [AppConstansts.conuserName],
                                         date: dateString,
                                         isUser: messegeData[index]
-                                                [conChatUserId] ==
+                                                [AppConstansts.conChatUserId] ==
                                             widget.friendUserId,
                                       );
                                     },

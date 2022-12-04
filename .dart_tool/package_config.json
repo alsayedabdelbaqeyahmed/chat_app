@@ -623,10 +623,10 @@
       "name": "chatapp",
       "rootUri": "../",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "2.17"
     }
   ],
-  "generated": "2022-11-30T12:43:46.376963Z",
+  "generated": "2022-12-04T04:51:14.335329Z",
   "generator": "pub",
   "generatorVersion": "2.18.0"
 }

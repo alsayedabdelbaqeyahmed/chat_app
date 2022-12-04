@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:chatapp/constants/constants.dart';
 import 'package:chatapp/constants/userDataModel.dart';
 import 'package:chatapp/presentation/controller/providers/chat_screen_provider.dart';
+import 'package:chatapp/presentation/style/app_assets.dart';
+import 'package:chatapp/presentation/style/app_string.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
@@ -62,7 +64,7 @@ class _SendMessegesFormState extends State<SendMessegesForm> {
   void _sendMesseges() async {
     final user = FirebaseAuth.instance.currentUser!;
     final userName = await FirebaseFirestore.instance
-        .collection(conUserCollectios)
+        .collection(AppConstansts.conUserCollectios)
         .doc(widget.userPhone)
         .get();
     if (_key.currentState!.validate()) {
@@ -71,7 +73,7 @@ class _SendMessegesFormState extends State<SendMessegesForm> {
         context: context,
         messeges: _eneteredMessege,
         userId: user.uid,
-        userName: userName[conuserName],
+        userName: userName[AppConstansts.conuserName],
         chatUserId: widget.chatUserId,
         userPhone: widget.userPhone,
         freindPhone: widget.friendPhone,
@@ -122,13 +124,13 @@ class _SendMessegesFormState extends State<SendMessegesForm> {
               },
               validator: (val) {
                 if (val!.trim() == null) {
-                  return 'please enter the messege';
+                  return AppStringConstants.enterMessege;
                 }
                 if (val.trim().isEmpty) {
-                  return 'please enter the messege';
+                  return AppStringConstants.enterMessege;
                 }
                 if (val.isEmpty) {
-                  return 'please enter the messege';
+                  return AppStringConstants.enterMessege;
                 }
                 return null;
               },
@@ -175,7 +177,7 @@ class _SendMessegesFormState extends State<SendMessegesForm> {
                   });
                 },
                 child: Image.asset(
-                  'assets/images/smiling-emoticon-square-face.png',
+                  AppAssetsConstants.smileFace,
                   width: size.height * 0.04,
                 ),
               ),
@@ -197,7 +199,7 @@ class _SendMessegesFormState extends State<SendMessegesForm> {
                     ),
                   ),
                   child: Image.asset(
-                    'assets/images/sent-mail.png',
+                    AppAssetsConstants.sendEmail,
                     //height: size.height * 0.02,
                     width: size.height * 0.035,
                     color: Colors.white,
@@ -213,7 +215,7 @@ class _SendMessegesFormState extends State<SendMessegesForm> {
         bottom: size.height * 0.03,
         left: size.height * 0.03,
       ),
-      hintText: 'Type Here',
+      hintText: AppStringConstants.typeHere,
       focusedBorder: OutlineInputBorder(
         borderSide: BorderSide(
           color: Color(0xffC3C3C3),
@@ -259,7 +261,7 @@ class _SendMessegesFormState extends State<SendMessegesForm> {
         iconColorSelected: Colors.blue,
         showRecentsTab: true,
         recentsLimit: 28,
-        noRecents: const Text("No recent Image"),
+        noRecents: Text(AppStringConstants.noRecentImage),
         tabIndicatorAnimDuration: kTabScrollDuration,
         categoryIcons: const CategoryIcons(),
         buttonMode: ButtonMode.MATERIAL,

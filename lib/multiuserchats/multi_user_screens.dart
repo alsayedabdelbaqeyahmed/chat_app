@@ -4,6 +4,9 @@ import 'package:chatapp/chat_screen/chat_screen.dart';
 import 'package:chatapp/constants/constants.dart';
 import 'package:chatapp/constants/userDataModel.dart';
 import 'package:chatapp/messeges/userImage.dart';
+import 'package:chatapp/presentation/style/app_assets.dart';
+import 'package:chatapp/presentation/style/app_string.dart';
+import 'package:chatapp/presentation/style/app_theme.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -47,7 +50,7 @@ class _MultiUserChatsState extends State<MultiUserChats> {
               : Container(
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage('assets/images/Bg.png'),
+                      image: AssetImage(AppAssetsConstants.bg),
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -62,9 +65,9 @@ class _MultiUserChatsState extends State<MultiUserChats> {
                         ),
                         StreamBuilder(
                           stream: FirebaseFirestore.instance
-                              .collection(conUserCollectios)
+                              .collection(AppConstansts.conUserCollectios)
                               .doc(user!.userPhone2)
-                              .collection(conFriendCollection)
+                              .collection(AppConstansts.conFriendCollection)
                               .snapshots(),
                           builder: (ctx, userData) {
                             if (userData.connectionState ==
@@ -88,16 +91,16 @@ class _MultiUserChatsState extends State<MultiUserChats> {
                                       children: [
                                         Center(
                                           child: Image.asset(
-                                            'assets/images/welcome.png',
+                                            AppAssetsConstants.welcome,
                                             width: size.height * 0.15,
                                           ),
                                         ),
                                         SizedBox(height: size.height * 0.02),
                                         Text(
-                                          'Start chating now',
+                                          AppStringConstants.startChat,
                                           style: TextStyle(
                                             fontSize: size.height * 0.04,
-                                            color: textColor,
+                                            color: AppColors.textColor,
                                           ),
                                         )
                                       ],
@@ -114,12 +117,14 @@ class _MultiUserChatsState extends State<MultiUserChats> {
                                               Navigator.of(context).push(
                                             MaterialPageRoute(
                                               builder: (context) => ChatScreen(
-                                                friendPhone: friendsData[index]
-                                                    [conFriendPhone],
+                                                friendPhone: friendsData[index][
+                                                    AppConstansts
+                                                        .conFriendPhone],
                                                 userId: friendsData[index]
-                                                    [conFriendId],
-                                                userName: friendsData[index]
-                                                    [conFriendUserName],
+                                                    [AppConstansts.conFriendId],
+                                                userName: friendsData[index][
+                                                    AppConstansts
+                                                        .conFriendUserName],
                                                 currentUserId: FirebaseAuth
                                                     .instance.currentUser!.uid,
                                                 userphone: user!.userPhone2,
@@ -140,8 +145,9 @@ class _MultiUserChatsState extends State<MultiUserChats> {
                                                   ),
                                                   child: userImage(
                                                     size,
-                                                    userName[index]
-                                                        [conUserImageUrl],
+                                                    userName[index][
+                                                        AppConstansts
+                                                            .conUserImageUrl],
                                                     false,
                                                     isChat: true,
                                                   ),
@@ -153,14 +159,17 @@ class _MultiUserChatsState extends State<MultiUserChats> {
                                                       //left: size.height * 0.01,
                                                       ),
                                                   child: userName[index][
-                                                                  conFriendUserName] ==
+                                                                  AppConstansts
+                                                                      .conFriendUserName] ==
                                                               '' ||
                                                           userName[index][
-                                                                  conFriendUserName] ==
+                                                                  AppConstansts
+                                                                      .conFriendUserName] ==
                                                               null
                                                       ? Text(
-                                                          userName[index]
-                                                              [conFriendPhone],
+                                                          userName[index][
+                                                              AppConstansts
+                                                                  .conFriendPhone],
                                                           style: TextStyle(
                                                             color: Colors.black,
                                                             fontWeight:
@@ -173,7 +182,8 @@ class _MultiUserChatsState extends State<MultiUserChats> {
                                                         )
                                                       : Text(
                                                           userName[index][
-                                                              conFriendUserName],
+                                                              AppConstansts
+                                                                  .conFriendUserName],
                                                           style: TextStyle(
                                                             color: Colors.black,
                                                             fontWeight:
@@ -202,7 +212,7 @@ class _MultiUserChatsState extends State<MultiUserChats> {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: primaryColor,
+        backgroundColor: AppColors.primaryColor,
         child: Icon(
           Icons.add,
         ),

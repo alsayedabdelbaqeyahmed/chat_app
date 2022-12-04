@@ -1,4 +1,5 @@
 import 'package:chatapp/constants/constants.dart';
+import 'package:chatapp/presentation/style/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -22,7 +23,7 @@ class ProfileMenue extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(30),
         // border: Border.all(color: Colors.red),
-        color: primaryColor,
+        color: AppColors.primaryColor,
       ),
       child: Row(
         //  mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -36,7 +37,6 @@ class ProfileMenue extends StatelessWidget {
               style: TextStyle(fontSize: size.height * 0.03),
             ),
           ),
-         
         ],
       ),
     );

@@ -1,4 +1,5 @@
 import 'package:chatapp/constants/constants.dart';
+import 'package:chatapp/presentation/style/app_theme.dart';
 
 import 'package:flutter/material.dart';
 
@@ -14,7 +15,7 @@ class ScreensBar extends StatelessWidget {
 
     return Container(
       padding: EdgeInsets.only(top: size.height * 0.03),
-      color: primaryColor,
+      color: AppColors.primaryColor,
       height: size.height * 0.09,
       width: double.infinity,
       child: Padding(

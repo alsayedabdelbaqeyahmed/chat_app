@@ -1,5 +1,6 @@
 import 'package:chatapp/constants/constants.dart';
 import 'package:chatapp/presentation/style/app_string.dart';
+import 'package:chatapp/presentation/style/app_theme.dart';
 
 import 'package:chatapp/sign_up_screen/sign_up_form.dart';
 import 'package:chatapp/splash_screen/logo.dart';
@@ -28,7 +29,7 @@ class SignUpScreen extends StatelessWidget {
                   Text(
                     AppStringConstants.register_number,
                     style: TextStyle(
-                        color: textColor,
+                        color: AppColors.textColor,
                         fontSize: size.height * 0.025,
                         height: size.height * 0.002),
                     textAlign: TextAlign.center,

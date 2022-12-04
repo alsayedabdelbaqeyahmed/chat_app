@@ -5,6 +5,7 @@ import 'package:chatapp/constants/default_buttons.dart';
 import 'package:chatapp/presentation/controller/providers/sign_up_provider.dart';
 import 'package:chatapp/presentation/style/app_assets.dart';
 import 'package:chatapp/presentation/style/app_string.dart';
+import 'package:chatapp/presentation/style/app_theme.dart';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -84,7 +85,8 @@ class _TakeImageState extends State<TakeImage> {
           SizedBox(height: size.height * 0.02),
           Text(
             AppStringConstants.pickImage,
-            style: TextStyle(color: textColor, fontSize: size.height * 0.02),
+            style: TextStyle(
+                color: AppColors.textColor, fontSize: size.height * 0.02),
           ),
           SizedBox(height: size.height * 0.02),
           Expanded(
@@ -98,7 +100,7 @@ class _TakeImageState extends State<TakeImage> {
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     border: Border.all(
-                      color: primaryColor,
+                      color: AppColors.primaryColor,
                     ),
                   ),
                   child: _selectedImage == null
@@ -107,7 +109,7 @@ class _TakeImageState extends State<TakeImage> {
                             AppStringConstants.yourImage,
                             style: TextStyle(
                               fontSize: size.height * 0.05,
-                              color: textColor,
+                              color: AppColors.textColor,
                             ),
                           ),
                         )
@@ -162,8 +164,8 @@ class _TakeImageState extends State<TakeImage> {
                     });
                   },
                   text: AppStringConstants.selectImage,
-                  textcolors: textColor,
-                  buttoncolors: primaryColor,
+                  textcolors: AppColors.textColor,
+                  buttoncolors: AppColors.primaryColor,
                 )
               : DefaultButton(
                   size: size,
@@ -176,8 +178,8 @@ class _TakeImageState extends State<TakeImage> {
                     );
                   },
                   text: AppStringConstants.finish,
-                  textcolors: textColor,
-                  buttoncolors: primaryColor,
+                  textcolors: AppColors.textColor,
+                  buttoncolors: AppColors.primaryColor,
                 )
         ],
       ),

@@ -1,4 +1,5 @@
 import 'package:chatapp/chat_screen/chat_app_bar.dart';
+import 'package:chatapp/presentation/style/app_assets.dart';
 import 'package:chatapp/sign_up_screen/sign_up_form.dart';
 import 'package:flutter/material.dart';
 
@@ -20,7 +21,7 @@ class AddFriendScreen extends StatelessWidget {
                       top: constrain.maxHeight * 0.05,
                       bottom: constrain.maxHeight * 0.01,
                     ),
-                    child: Image.asset('assets/images/firends.png'),
+                    child: Image.asset(AppAssetsConstants.friends),
                   ),
                   Padding(
                     padding: EdgeInsetsDirectional.only(

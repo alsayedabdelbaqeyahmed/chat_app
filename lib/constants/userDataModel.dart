@@ -14,17 +14,17 @@ class UserDataModel {
 
   toJason() {
     return {
-      conuserName: username,
-      conuserPhone: userPhone2,
-      conFriendPhone: friendPhone,
+      AppConstansts.conuserName: username,
+      AppConstansts.conuserPhone: userPhone2,
+      AppConstansts.conFriendPhone: friendPhone,
       'id': id,
     };
   }
 
   UserDataModel.fromJason(Map<String, dynamic> map) {
-    username = map[conuserName];
-    userPhone2 = map[conuserPhone];
-    friendPhone = map[conFriendPhone];
+    username = map[AppConstansts.conuserName];
+    userPhone2 = map[AppConstansts.conuserPhone];
+    friendPhone = map[AppConstansts.conFriendPhone];
     id = map['id'];
   }
 }
@@ -53,7 +53,7 @@ class LocalDataBase {
       onCreate: (db, version) async {
         // When creating the db, create the table
         await db.execute(
-            'CREATE TABLE $conUserCollectios (id INTEGER PRIMARY KEY, $conuserName TEXT, $conuserPhone TEXT, $conFriendPhone TEXT)');
+            'CREATE TABLE ${AppConstansts.conUserCollectios} (id INTEGER PRIMARY KEY, ${AppConstansts.conuserName} TEXT, ${AppConstansts.conuserPhone} TEXT, ${AppConstansts.conFriendPhone} TEXT)');
       },
     );
   }
@@ -62,7 +62,7 @@ class LocalDataBase {
     try {
       var _db = await dataBase;
 
-      return await _db!.insert(conUserCollectios, data.toJason());
+      return await _db!.insert(AppConstansts.conUserCollectios, data.toJason());
     } catch (e) {
       print(e.toString());
       throw (e);
@@ -71,7 +71,7 @@ class LocalDataBase {
 
   Future<int> updateData(UserDataModel user) async {
     var _db = await dataBase;
-    return _db!.update(conUserCollectios, user.toJason(),
+    return _db!.update(AppConstansts.conUserCollectios, user.toJason(),
         where: 'id = ?', whereArgs: [user.id]);
   }
 
@@ -83,7 +83,8 @@ class LocalDataBase {
   Future<UserDataModel> getUserData() async {
     var _db = await dataBase;
     try {
-      List<Map<String, dynamic>> userMap = await _db!.query(conUserCollectios);
+      List<Map<String, dynamic>> userMap =
+          await _db!.query(AppConstansts.conUserCollectios);
       // print(userMap);
       List<UserDataModel> userData = [];
       userMap.isNotEmpty
@@ -101,7 +102,7 @@ class LocalDataBase {
   Future<int> deleteAllData() async {
     var _db = await dataBase;
     try {
-      return _db!.delete(conUserCollectios);
+      return _db!.delete(AppConstansts.conUserCollectios);
     } catch (e) {
       print(e);
       throw (e);

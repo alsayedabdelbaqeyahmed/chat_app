@@ -1,5 +1,7 @@
 import 'package:chatapp/constants/constants.dart';
 import 'package:chatapp/multiuserchats/multi_user_screens.dart';
+import 'package:chatapp/presentation/style/app_assets.dart';
+import 'package:chatapp/presentation/style/app_theme.dart';
 import 'package:chatapp/profile/profile.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +14,7 @@ class ChatAppBar extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return Container(
       padding: EdgeInsets.only(top: size.height * 0.02),
-      color: appBarColor,
+      color: AppColors.appBarColor,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -34,7 +36,7 @@ class ChatAppBar extends StatelessWidget {
                   left: size.height * 0.02,
                 ),
                 child: Image.asset(
-                  'assets/images/chat.png',
+                  AppAssetsConstants.chat,
                   height: size.height * 0.065,
                   width: size.height * 0.1,
                 ),
@@ -73,7 +75,7 @@ class ChatAppBar extends StatelessWidget {
                 bottom: size.height * 0.02,
               ),
               child: Image.asset(
-                'assets/images/Group 41.png',
+                AppAssetsConstants.group41,
                 width: size.height * 0.05,
               ),
             ),
@@ -95,7 +97,7 @@ class ChatAppBar extends StatelessWidget {
       child: SizedBox(
         child: childType == 0
             ? Image.asset(
-                'assets/images/Un.png',
+                AppAssetsConstants.un,
                 width: chwidth,
                 height: chihight,
               )

@@ -35,23 +35,23 @@ class SignUpProvider with ChangeNotifier {
 
       final ref = FirebaseStorage.instance
           .ref()
-          .child(conProfile_Image)
-          .child(_userId! + conJpg);
+          .child(AppConstansts.conProfile_Image)
+          .child(_userId! + AppConstansts.conJpg);
       await ref.putFile(image!).whenComplete(
         () async {
           final profileImageUrl = await ref.getDownloadURL();
 
           await FirebaseFirestore.instance
-              .collection(conUserCollectios)
+              .collection(AppConstansts.conUserCollectios)
               .doc(phoneNumber)
               .set(
             {
-              conuserName: username,
-              conuserCountry: usercountry,
-              conuserDialCode: userdialCode,
-              conuserPhone: userphone,
-              conUserId: authcredintial.user!.uid,
-              conUserImageUrl: profileImageUrl.toString(),
+              AppConstansts.conuserName: username,
+              AppConstansts.conuserCountry: usercountry,
+              AppConstansts.conuserDialCode: userdialCode,
+              AppConstansts.conuserPhone: userphone,
+              AppConstansts.conUserId: authcredintial.user!.uid,
+              AppConstansts.conUserImageUrl: profileImageUrl.toString(),
             },
           ).whenComplete(
             () {
@@ -113,8 +113,8 @@ class SignUpProvider with ChangeNotifier {
         (value) async {
           final ref = FirebaseStorage.instance
               .ref()
-              .child(conProfile_Image)
-              .child(_userId! + conJpg);
+              .child(AppConstansts.conProfile_Image)
+              .child(_userId! + AppConstansts.conJpg);
           ref.delete();
           await _auth.signOut();
         },
@@ -129,8 +129,8 @@ class SignUpProvider with ChangeNotifier {
         (value) async {
           final ref = FirebaseStorage.instance
               .ref()
-              .child(conProfile_Image)
-              .child(_userId! + conJpg);
+              .child(AppConstansts.conProfile_Image)
+              .child(_userId! + AppConstansts.conJpg);
           ref.delete();
           final delete = _auth.currentUser;
           await delete!.delete();
@@ -141,23 +141,23 @@ class SignUpProvider with ChangeNotifier {
 
   Future<void> updateProfilePhoto({File? image, String? phoneNumber}) async {
     final currentUser = await FirebaseFirestore.instance
-        .collection(conUserCollectios)
+        .collection(AppConstansts.conUserCollectios)
         .doc(phoneNumber)
         .get();
     final ref = FirebaseStorage.instance
         .ref()
-        .child(conProfile_Image)
-        .child(currentUser[conUserId] + conJpg);
+        .child(AppConstansts.conProfile_Image)
+        .child(currentUser[AppConstansts.conUserId] + AppConstansts.conJpg);
     await ref.putFile(image!).whenComplete(
       () async {
         final profileImageUrl = await ref.getDownloadURL();
 
         await FirebaseFirestore.instance
-            .collection(conUserCollectios)
+            .collection(AppConstansts.conUserCollectios)
             .doc(phoneNumber)
             .update(
           {
-            conUserImageUrl: profileImageUrl.toString(),
+            AppConstansts.conUserImageUrl: profileImageUrl.toString(),
           },
         );
       },

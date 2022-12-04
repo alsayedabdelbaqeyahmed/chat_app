@@ -8,8 +8,11 @@ class AppStringConstants {
   static const String invalid_number = 'invalid-phone-number';
   static const String finish = 'Finsh';
   static const String next = 'Next';
+  static const String noRecentImage = "No recent Image";
   static const String userName = 'User name';
   static const String yourImage = 'Your Image';
+  static const String enterMessege = 'please enter the messege';
+  static const String startChat = 'Start chating now';
   static const String done = 'Done';
   static const String code = 'code';
   static const String pickImage = 'Pick up the profile image';
@@ -30,4 +33,5 @@ class AppStringConstants {
   static const String logOut = 'logOut';
   static const String delete = 'Delete Account';
   static const String contin = 'Continue';
+  static const String typeHere = 'Type Here';
 }

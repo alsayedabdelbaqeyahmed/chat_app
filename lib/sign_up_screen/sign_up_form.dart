@@ -5,6 +5,7 @@ import 'package:chatapp/presentation/controller/providers/add_friend_provider.da
 
 import 'package:chatapp/presentation/controller/providers/sign_up_provider.dart';
 import 'package:chatapp/presentation/style/app_string.dart';
+import 'package:chatapp/presentation/style/app_theme.dart';
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -61,7 +62,7 @@ class _SignUpFormState extends State<SignUpForm> {
               bottom: size.height * 0.009,
             ),
             decoration: BoxDecoration(
-              border: Border.all(color: textColor),
+              border: Border.all(color: AppColors.textColor),
               borderRadius: BorderRadius.all(
                 Radius.circular(50),
               ),
@@ -76,7 +77,7 @@ class _SignUpFormState extends State<SignUpForm> {
                         ? AppStringConstants.egypt
                         : countryType!.name!,
                     style: TextStyle(
-                      color: textColor,
+                      color: AppColors.textColor,
                       fontSize: size.height * 0.04,
                     ),
                   ),
@@ -92,7 +93,7 @@ class _SignUpFormState extends State<SignUpForm> {
           SizedBox(height: size.height * 0.05),
           SizedBox(height: size.height * 0.08),
           DefaultButton(
-            buttoncolors: primaryColor,
+            buttoncolors: AppColors.primaryColor,
             text: widget.isFrirend!
                 ? AppStringConstants.addNewFriend
                 : AppStringConstants.done,
@@ -200,7 +201,7 @@ class _SignUpFormState extends State<SignUpForm> {
           borderRadius: BorderRadius.all(
             Radius.circular(50),
           ),
-          borderSide: BorderSide(color: textColor),
+          borderSide: BorderSide(color: AppColors.textColor),
         ),
       ),
       onEditingComplete: () => FocusScope.of(context!).unfocus(),

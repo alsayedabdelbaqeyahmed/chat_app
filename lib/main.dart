@@ -15,6 +15,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 
+import 'presentation/style/app_theme.dart';
+
 Future<void> backgrounHandler(RemoteMessage messege) async {}
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,7 +40,7 @@ Future<void> main() async {
         theme: ThemeData(
           primarySwatch: Colors.blue,
           appBarTheme: AppBarTheme(
-            backgroundColor: appBarColor,
+            backgroundColor: AppColors.appBarColor,
           ),
         ),
         home: MyApp(),

@@ -19,30 +19,31 @@ class AddFriendProvider with ChangeNotifier {
     BuildContext? context,
   }) async {
     final friendUser = await FirebaseFirestore.instance
-        .collection(conUserCollectios)
+        .collection(AppConstansts.conUserCollectios)
         .doc(friendNumber)
         .get();
     final currentUser = await FirebaseFirestore.instance
-        .collection(conUserCollectios)
+        .collection(AppConstansts.conUserCollectios)
         .doc(userPhone)
         .get();
 
-    final users =
-        await FirebaseFirestore.instance.collection(conUserCollectios).get();
+    final users = await FirebaseFirestore.instance
+        .collection(AppConstansts.conUserCollectios)
+        .get();
     final userList = users.docs.map((e) => e.data()).toList();
 
     final element = userList.firstWhere(
-      (element) => element[conuserPhone] == friendNumber,
+      (element) => element[AppConstansts.conuserPhone] == friendNumber,
       orElse: () => {},
     );
 
-    if (element[conuserPhone] == userPhone || element.isEmpty) {
+    if (element[AppConstansts.conuserPhone] == userPhone || element.isEmpty) {
       AwesomeDialog(
         padding: EdgeInsets.all(10),
         context: context!,
         dialogType: DialogType.ERROR,
         body: Column(children: [
-          element[conuserPhone] != userPhone
+          element[AppConstansts.conuserPhone] != userPhone
               ? Text(
                   AppStringConstants.user_not_found,
                   style: TextStyle(color: Colors.black, fontSize: 20),
@@ -52,7 +53,7 @@ class AddFriendProvider with ChangeNotifier {
                   style: TextStyle(color: Colors.black, fontSize: 20),
                 ),
           SizedBox(height: 20),
-          element[conuserPhone] != userPhone
+          element[AppConstansts.conuserPhone] != userPhone
               ? Text(
                   AppStringConstants.invite_friend,
                   style: TextStyle(color: Colors.red, fontSize: 15),
@@ -68,25 +69,27 @@ class AddFriendProvider with ChangeNotifier {
     } else {
       //  String? chatId = friendNumber! + userPhone;
       _friendAuth
-          .collection(conUserCollectios)
-          .doc(currentUser[conuserPhone])
-          .collection(conFriendCollection)
+          .collection(AppConstansts.conUserCollectios)
+          .doc(currentUser[AppConstansts.conuserPhone])
+          .collection(AppConstansts.conFriendCollection)
           .doc(friendNumber)
           .set(
         {
-          conFriendUserName: friendUser[conuserName],
-          conFriendPhone: friendUser[conuserPhone],
-          conuserPhone: currentUser[conuserPhone],
-          conuserName: currentUser[conuserName],
-          conUserImageUrl: friendUser[conUserImageUrl],
-          conFriendId: friendUser[conUserId],
+          AppConstansts.conFriendUserName:
+              friendUser[AppConstansts.conuserName],
+          AppConstansts.conFriendPhone: friendUser[AppConstansts.conuserPhone],
+          AppConstansts.conuserPhone: currentUser[AppConstansts.conuserPhone],
+          AppConstansts.conuserName: currentUser[AppConstansts.conuserName],
+          AppConstansts.conUserImageUrl:
+              friendUser[AppConstansts.conUserImageUrl],
+          AppConstansts.conFriendId: friendUser[AppConstansts.conUserId],
           // conChatId: chatId
         },
       ).then((value) async {
         final userDoc = FirebaseFirestore.instance
-            .collection(conUserCollectios)
+            .collection(AppConstansts.conUserCollectios)
             .doc(userPhone)
-            .collection(conFriendCollection)
+            .collection(AppConstansts.conFriendCollection)
             .doc();
 
         //  final data = userDoc.docs.map((e) => e.data()).toList();
@@ -96,18 +99,21 @@ class AddFriendProvider with ChangeNotifier {
         // print(userDoc.docChanges);
 
         _friendAuth
-            .collection(conUserCollectios)
-            .doc(friendUser[conuserPhone])
-            .collection(conFriendCollection)
-            .doc(currentUser[conuserPhone])
+            .collection(AppConstansts.conUserCollectios)
+            .doc(friendUser[AppConstansts.conuserPhone])
+            .collection(AppConstansts.conFriendCollection)
+            .doc(currentUser[AppConstansts.conuserPhone])
             .set(
           {
-            conFriendUserName: currentUser[conuserName],
-            conFriendPhone: currentUser[conuserPhone],
-            conuserPhone: friendUser[conuserPhone],
-            conuserName: friendUser[conuserName],
-            conUserImageUrl: currentUser[conUserImageUrl],
-            conFriendId: currentUser[conUserId],
+            AppConstansts.conFriendUserName:
+                currentUser[AppConstansts.conuserName],
+            AppConstansts.conFriendPhone:
+                currentUser[AppConstansts.conuserPhone],
+            AppConstansts.conuserPhone: friendUser[AppConstansts.conuserPhone],
+            AppConstansts.conuserName: friendUser[AppConstansts.conuserName],
+            AppConstansts.conUserImageUrl:
+                currentUser[AppConstansts.conUserImageUrl],
+            AppConstansts.conFriendId: currentUser[AppConstansts.conUserId],
             // conChatId: chatId
           },
         );

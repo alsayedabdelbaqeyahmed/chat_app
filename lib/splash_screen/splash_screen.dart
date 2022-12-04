@@ -3,6 +3,7 @@ import 'package:chatapp/constants/default_buttons.dart';
 import 'package:chatapp/constants/splash_screen_texts_images.dart';
 import 'package:chatapp/presentation/style/app_assets.dart';
 import 'package:chatapp/presentation/style/app_string.dart';
+import 'package:chatapp/presentation/style/app_theme.dart';
 import 'package:chatapp/sign_up_screen/sign_up_screen.dart';
 import 'package:chatapp/splash_screen/logo.dart';
 import 'package:chatapp/splash_screen/splash_spot.dart';
@@ -57,10 +58,12 @@ class _SplashScreenState extends State<SplashScreen> {
               SizedBox(height: size.height * 0.05),
               DefaultButton(
                 size: size,
-                textcolors: _currentPage == 0 ? textColor : Colors.white,
+                textcolors:
+                    _currentPage == 0 ? AppColors.textColor : Colors.white,
                 press: () => Navigator.of(context).pushNamedAndRemoveUntil(
                     SignUpScreen.routeNames, (route) => false),
-                buttoncolors: _currentPage == 0 ? Colors.white : primaryColor,
+                buttoncolors:
+                    _currentPage == 0 ? Colors.white : AppColors.primaryColor,
                 text: _currentPage == 2
                     ? AppStringConstants.finish
                     : AppStringConstants.next,
@@ -84,12 +87,13 @@ class _SplashScreenState extends State<SplashScreen> {
         ),
         itemBuilder: (ctx, index) => ListView(
           children: [
-            image(size, splashData[index][conImage]!, _currentPage),
+            image(
+                size, splashData[index][AppConstansts.conImage]!, _currentPage),
             SizedBox(height: size.height * 0.01),
             Padding(
               padding: EdgeInsets.all(size.height * 0.04),
               child: Text(
-                splashData[index][conText]!,
+                splashData[index][AppConstansts.conText]!,
                 style: TextStyle(fontSize: size.height * 0.03),
                 textAlign: TextAlign.center,
               ),

@@ -52,7 +52,7 @@ class _ProfilePicState extends State<ProfilePic> {
           SizedBox(
             child: FutureBuilder(
               future: FirebaseFirestore.instance
-                  .collection(conUserCollectios)
+                  .collection(AppConstansts.conUserCollectios)
                   .doc(widget.userPhone)
                   .get(),
               builder: (ctx, data) {
@@ -74,7 +74,7 @@ class _ProfilePicState extends State<ProfilePic> {
                         : _selectedImage == null
                             ? CircleAvatar(
                                 backgroundImage: NetworkImage(
-                                  userData[conUserImageUrl],
+                                  userData[AppConstansts.conUserImageUrl],
                                 ),
                               )
                             : CircleAvatar(

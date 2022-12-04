@@ -16,49 +16,49 @@ class ChatScreenProvider with ChangeNotifier {
     required String? freindPhone,
   }) async {
     final friendUserId = await FirebaseFirestore.instance
-        .collection(conUserCollectios)
+        .collection(AppConstansts.conUserCollectios)
         .doc(userPhone)
-        .collection(conFriendCollection)
+        .collection(AppConstansts.conFriendCollection)
         .doc(freindPhone)
         .get();
     //  final chatId = friendUserId[conChatId];
 
     _chatAuth
-        .collection(conUserCollectios)
+        .collection(AppConstansts.conUserCollectios)
         .doc(userPhone)
-        .collection(conFriendCollection)
+        .collection(AppConstansts.conFriendCollection)
         .doc(freindPhone)
-        .collection(conChatCollectios)
+        .collection(AppConstansts.conChatCollectios)
         .doc()
         .set(
       {
-        conUserId: userId,
-        conChatMesseges: messeges,
-        conuserName: userName,
-        conChatCreatedAt: Timestamp.now(),
-        conChatUserId: friendUserId[conFriendPhone],
-        conFriendUserName: friendUserId[conFriendUserName] == null
+        AppConstansts.conUserId: userId,
+        AppConstansts.conChatMesseges: messeges,
+        AppConstansts.conuserName: userName,
+        AppConstansts.conChatCreatedAt: Timestamp.now(),
+        AppConstansts.conChatUserId: friendUserId[AppConstansts.conFriendPhone],
+        AppConstansts.conFriendUserName: friendUserId[AppConstansts.conFriendUserName] == null
             ? freindPhone
-            : friendUserId[conFriendUserName]
+            : friendUserId[AppConstansts.conFriendUserName]
       },
     ).then((value) {
       _chatAuth
-          .collection(conUserCollectios)
+          .collection(AppConstansts.conUserCollectios)
           .doc(freindPhone)
-          .collection(conFriendCollection)
+          .collection(AppConstansts.conFriendCollection)
           .doc(userPhone)
-          .collection(conChatCollectios)
+          .collection(AppConstansts.conChatCollectios)
           .doc()
           .set(
         {
-          conUserId: userId,
-          conChatMesseges: messeges,
-          conuserName: userName,
-          conChatCreatedAt: Timestamp.now(),
-          conChatUserId: friendUserId[conFriendPhone],
-          conFriendUserName: friendUserId[conFriendUserName] == null
+          AppConstansts.conUserId: userId,
+          AppConstansts.conChatMesseges: messeges,
+          AppConstansts.conuserName: userName,
+          AppConstansts.conChatCreatedAt: Timestamp.now(),
+          AppConstansts.conChatUserId: friendUserId[AppConstansts.conFriendPhone],
+          AppConstansts.conFriendUserName: friendUserId[AppConstansts.conFriendUserName] == null
               ? freindPhone
-              : friendUserId[conFriendUserName]
+              : friendUserId[AppConstansts.conFriendUserName]
         },
       );
     });

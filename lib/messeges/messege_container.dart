@@ -1,6 +1,7 @@
 import 'package:chatapp/constants/constants.dart';
 
 import 'package:chatapp/messeges/userImage.dart';
+import 'package:chatapp/presentation/style/app_theme.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:flutter/material.dart';
@@ -27,7 +28,7 @@ class MessegeContainer extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return FutureBuilder(
       future: FirebaseFirestore.instance
-          .collection(conUserCollectios)
+          .collection(AppConstansts.conUserCollectios)
           .doc(userPhone)
           .get(),
       builder: (ctx, data) {
@@ -42,7 +43,9 @@ class MessegeContainer extends StatelessWidget {
             isMe! ? dates() : SizedBox.shrink(),
             !isMe!
                 ? userImage(
-                    size, (data.data as dynamic)[conUserImageUrl], isMe!)
+                    size,
+                    (data.data as dynamic)[AppConstansts.conUserImageUrl],
+                    isMe!)
                 : SizedBox.shrink(),
             Container(
               padding: EdgeInsets.all(size.height * 0.02),
@@ -62,7 +65,7 @@ class MessegeContainer extends StatelessWidget {
                   bottomRight: Radius.circular(20),
                 ),
                 border: Border.all(
-                  color: textColor,
+                  color: AppColors.textColor,
                 ),
               ),
               child: Column(
@@ -82,7 +85,9 @@ class MessegeContainer extends StatelessWidget {
             !isMe! ? dates() : SizedBox.shrink(),
             isMe!
                 ? userImage(
-                    size, (data.data as dynamic)[conUserImageUrl], isMe!)
+                    size,
+                    (data.data as dynamic)[AppConstansts.conUserImageUrl],
+                    isMe!)
                 : SizedBox.shrink(),
           ],
         );
@@ -94,7 +99,7 @@ class MessegeContainer extends StatelessWidget {
     return Text(
       date!,
       style: TextStyle(
-        color: isMe! ? Color(0xffFFC7F9) : textColor,
+        color: isMe! ? Color(0xffFFC7F9) : AppColors.textColor,
         fontWeight: FontWeight.bold,
       ),
     );
